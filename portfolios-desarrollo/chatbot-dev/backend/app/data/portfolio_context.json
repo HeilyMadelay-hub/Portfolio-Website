@@ -1,0 +1,48 @@
+{
+  "personal_info": {
+    "name": "Tu Nombre",
+    "title": "Desarrollador Full Stack",
+    "location": "Tu Ciudad, País",
+    "email": "tu-email@ejemplo.com",
+    "phone": "+34 XXX XXX XXX",
+    "linkedin": "https://linkedin.com/in/tu-perfil",
+    "github": "https://github.com/tu-usuario",
+    "portfolio": "https://tu-portfolio.com"
+  },
+  "professional_summary": "Desarrollador Full Stack con X años de experiencia en desarrollo web moderno. Especializado en React, Node.js, Python y tecnologías cloud. Apasionado por crear soluciones innovadoras y escalables.",
+  
+  "technical_skills": {
+    "frontend": ["React", "TypeScript", "Next.js", "Vue.js", "HTML5", "CSS3", "Tailwind CSS"],
+    "backend": ["Node.js", "Python", "Flask", "Express", "FastAPI", "Django"],
+    "databases": ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
+    "cloud": ["AWS", "Google Cloud", "Azure", "Docker", "Kubernetes"],
+    "tools": ["Git", "GitHub Actions", "Jest", "Cypress", "Webpack", "Vite"]
+  },
+  
+  "availability": {
+    "status": "Disponible para nuevas oportunidades",
+    "preferred_roles": ["Full Stack Developer", "Frontend Developer", "Software Engineer"],
+    "work_type": ["Remoto", "Híbrido", "Presencial"],
+    "start_date": "Inmediato"
+  },
+  
+  "projects_highlight": [
+    {
+      "name": "Portfolio Chatbot",
+      "description": "Chatbot inteligente con RAG para consultas sobre perfil profesional",
+      "technologies": ["React", "Flask", "Google Gemini", "LangChain", "ChromaDB"],
+      "features": ["Procesamiento de documentos", "Búsqueda vectorial", "Respuestas contextuales"]
+    }
+  ],
+  
+  "education": {
+    "degree": "Tu Título Universitario",
+    "institution": "Tu Universidad",
+    "year": "Año de graduación",
+    "certifications": [
+      "Certificación en Cloud Computing",
+      "Certificación en React",
+      "Certificación en Python"
+    ]
+  }
+}
