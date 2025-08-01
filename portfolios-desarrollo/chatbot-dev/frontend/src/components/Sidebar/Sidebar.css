@@ -1,0 +1,118 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #333;
+}
+
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #4a9eff;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.menu-btn:hover {
+  background-color: #333;
+  border-radius: 4px;
+}
+
+.sidebar-sections {
+  padding: 20px 10px;
+}
+
+.sidebar-section {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar-section:hover {
+  background-color: #2a2a2a;
+}
+
+.sidebar-section.active {
+  background-color: #333;
+  color: #4a9eff;
+}
+
+.section-icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.section-name {
+  font-size: 14px;
+}
+
+.recent-conversations {
+  flex: 1;
+  padding: 0 10px;
+  overflow-y: auto;
+}
+
+.recent-conversations h3 {
+  font-size: 12px;
+  color: #888;
+  margin: 10px 5px;
+  text-transform: uppercase;
+}
+
+.conversation-item {
+  padding: 10px 15px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.2s;
+}
+
+.conversation-item:hover {
+  background-color: #2a2a2a;
+}
+
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.user-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.user-location {
+  color: #888;
+}

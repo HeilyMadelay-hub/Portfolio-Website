@@ -1,0 +1,142 @@
+.message-input-container {
+  background-color: #1e1e1e;
+  border-top: 1px solid #333;
+  padding: 20px;
+}
+
+.message-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #2b2b2b;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 8px 12px;
+  transition: border-color 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: #4a9eff;
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.message-input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 16px;
+  padding: 12px;
+  outline: none;
+}
+
+.message-input::placeholder {
+  color: #666;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.action-button:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.attach-button {
+  margin-right: 8px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.send-button {
+  color: white;
+}
+
+.send-button svg {
+  color: white;
+}
+
+
+.send-button:hover:not(:disabled) {
+  background-color: #4a9eff;
+  color: white;
+}
+
+.send-button:disabled {
+  filter: grayscale(1);
+}
+
+.input-footer {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+/* Animación para el botón de enviar */
+.send-button:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .message-input-container {
+    padding: 15px 10px;
+  }
+
+  .input-wrapper {
+    padding: 6px 10px;
+  }
+
+  .message-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .action-button {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}

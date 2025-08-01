@@ -127,7 +127,7 @@ console.log(data.response); // Respuesta del chatbot
 
 ## 🧠 Cómo Funciona el RAG
 
-1. **Procesamiento**: Tus documentos se dividen en chunks pequeños
+1. **Procesamiento**: Los documentos se dividen en chunks pequeños
 2. **Embeddings**: Cada chunk se convierte en vectores usando Google AI
 3. **Indexación**: Los vectores se guardan en ChromaDB
 4. **Búsqueda**: Cuando preguntas algo, busca chunks relevantes
