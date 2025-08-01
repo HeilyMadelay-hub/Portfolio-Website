@@ -28,6 +28,8 @@ const ChatArea = () => {
 
           <h1 className="chat-title">Mad-GPT</h1>
           <p className="tagline">Backend Developer | AI Developer</p>
+          <p className="tagline2"><em>Helping companies build scalable AI solutions</em></p>
+
 
         </div>
       </div>
