@@ -1,179 +1,364 @@
-/* === Sidebar base === */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
+  width: 280px;
   height: 100vh;
-  width: 260px;
-  background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
-  color: #f5f5f5;
-  overflow-y: auto;
-  z-index: 200;
-  transform: translateX(-100%);
-  transition: transform 0.35s ease, box-shadow 0.3s ease;
-  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5);
-}
-
-/* Sidebar abierto */
-.sidebar.open {
-  transform: translateX(0);
-}
-
-/* Scrollbar estilizado */
-.sidebar::-webkit-scrollbar {
-  width: 6px;
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background: #444;
-  border-radius: 3px;
-}
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background: #666;
-}
-
-/* === Header === */
-.sidebar-header {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  border-right: 1px solid #2a2a2a;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 1000;
+  transform-origin: left center;
+  transform: translateX(0);
+  opacity: 1;
+  will-change: transform, opacity, width;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+  border-right: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+/* Header mejorado */
+.sidebar-header {
+  padding: 24px 20px;
+  display: flex;
   justify-content: space-between;
-  padding: 18px 20px;
-  border-bottom: 1px solid #222;
-  background: #141414;
+  align-items: center;
+  border-bottom: 1px solid #2a2a2a;
+  min-height: 80px;
+  background-color: #161616;
 }
 
 .sidebar-header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 600;
   color: #4a9eff;
-  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  letter-spacing: -0.5px;
 }
 
-/* === Botón ✖ dentro del sidebar === */
 .menu-btn {
-  background: transparent;
+  background: none;
   border: none;
-  color: #eee;
-  font-size: 1.8rem;
+  color: #888;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 8px;
   border-radius: 8px;
-  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
 }
 
 .menu-btn:hover {
-  background-color: #333;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
 }
 
-/* === Botón ☰ flotante cuando sidebar está cerrado === */
-.sidebar-toggle {
-  position: fixed;
-  top: 15px;
-  left: 15px;
-  background: #111;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 300;
-  padding: 8px 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  transition: background 0.3s;
+.menu-btn svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
 }
 
-.sidebar-toggle:hover {
-  background: #222;
-}
-
-/* === Secciones === */
+/* Secciones con mejor espaciado */
 .sidebar-sections {
-  padding: 20px 15px;
+  padding: 24px 16px 20px;
 }
 
 .sidebar-section {
   display: flex;
   align-items: center;
-  padding: 12px 15px;
-  margin-bottom: 8px;
-  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 15px;
-  color: #ddd;
-  transition: background-color 0.25s, color 0.25s, transform 0.2s;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
 }
 
-.section-title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #888;
-  margin: 10px 0 5px 15px;
-  text-transform: uppercase;
+.sidebar-section::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: #4a9eff;
+  border-radius: 0 3px 3px 0;
+  transition: height 0.3s ease;
 }
-
 
 .sidebar-section:hover {
-  background-color: #1e1e1e;
-  color: #4a9eff;
-  transform: translateX(4px);
+  background-color: rgba(74, 158, 255, 0.08);
+  padding-left: 19px;
 }
 
 .sidebar-section.active {
-  background-color: #222;
+  background-color: rgba(74, 158, 255, 0.12);
   color: #4a9eff;
-  border-left: 3px solid #007bff;
 }
 
+.sidebar-section.active::before {
+  height: 70%;
+}
 
 .section-icon {
-  margin-right: 12px;
-  font-size: 18px;
+  font-size: 20px;
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
 }
 
-.sidebar-section {
-  animation: fadeIn 0.4s ease forwards;
-  opacity: 0;
+.section-name {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #d0d0d0;
 }
 
-.sidebar.open .sidebar-section {
-  opacity: 1;
+.sidebar-section:hover .section-name {
+  color: #e8e8e8;
 }
 
-/* === Conversaciones recientes === */
+.sidebar-section.active .section-name {
+  color: #4a9eff;
+  font-weight: 600;
+}
+
+/* Conversaciones recientes mejoradas */
 .recent-conversations {
-  padding: 15px 20px;
-  border-top: 1px solid #222;
-  margin-top: 10px;
+  flex: 1;
+  padding: 0 16px 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .recent-conversations h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-  font-weight: 500;
-  color: #4a9eff;
-  letter-spacing: 0.3px;
+  font-size: 11px;
+  color: #666;
+  margin: 24px 0 16px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .conversation-item {
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  background: #1a1a1a;
-  color: #ccc;
-  font-size: 14px;
+  padding: 12px 16px;
+  margin-bottom: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.25s, transform 0.2s;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  color: #b0b0b0;
+  position: relative;
+  background-color: transparent;
+}
+
+.conversation-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: #2a2a2a;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .conversation-item:hover {
-  background: #222;
-  color: #fff;
-  transform: translateX(4px);
+  background-color: #242424;
+  color: #e0e0e0;
+  padding-left: 20px;
 }
 
+.conversation-item:hover::after {
+  opacity: 1;
+}
 
+/* Footer mejorado */
+.sidebar-footer {
+  padding: 20px 16px;
+  border-top: 1px solid #2a2a2a;
+  background-color: #161616;
+  margin-top: auto;
+}
 
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
 
+.user-info:hover {
+  background-color: #242424;
+}
 
+.user-icon {
+  font-size: 20px;
+  margin-right: 12px;
+  opacity: 0.8;
+}
 
+.user-location {
+  color: #888;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
 
+/* Botón flotante mejorado */
+.floating-menu-btn {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #888 !important;
+  cursor: pointer !important;
+  padding: 11px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  width: 46px !important;
+  height: 46px !important;
+  z-index: 900 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  pointer-events: auto !important;
+  backdrop-filter: blur(10px);
+  animation: fadeInButton 0.4s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.floating-menu-btn:hover {
+  background-color: #242424 !important;
+  border-color: #3a3a3a !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  color: #e0e0e0 !important;
+}
+
+.floating-menu-btn:active {
+  transform: scale(0.98) !important;
+}
+
+.floating-menu-btn svg {
+  width: 24px !important;
+  height: 24px !important;
+  pointer-events: none !important;
+}
+
+/* Scrollbar personalizada mejorada */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInButton {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sidebar-section,
+.conversation-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 280px;
+    height: 100vh;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar.collapsed {
+    box-shadow: none;
+  }
+}
+
+/* Mejoras de accesibilidad */
+.sidebar-section:focus,
+.conversation-item:focus,
+.menu-btn:focus,
+.floating-menu-btn:focus {
+  outline: 2px solid #4a9eff;
+  outline-offset: -2px;
+}
+
+/* Transiciones suaves para todos los elementos interactivos */
+.sidebar * {
+  transition-property: background-color, color, transform, opacity, padding;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}

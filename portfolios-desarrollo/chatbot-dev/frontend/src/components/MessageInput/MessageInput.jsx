@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MessageInput.css';
 
-const MessageInput = () => {
+const MessageInput = ({ language }) => {
   const [message, setMessage] = useState('');
   const [isRecording, setIsRecording] = useState(false);
 
@@ -24,7 +24,7 @@ const MessageInput = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Ask MadGPT..."
+            placeholder={language === 'es' ? 'Pregunta a MadGPT...' : 'Ask MadGPT...'}
             className="message-input"
           />
 
@@ -33,7 +33,7 @@ const MessageInput = () => {
               type="submit" 
               className="action-button send-button"
               disabled={!message.trim()}
-              title="Enviar mensaje"
+              title={language === 'es' ? 'Enviar mensaje' : 'Send message'}
             >
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
@@ -56,7 +56,10 @@ const MessageInput = () => {
 
       <div className="input-footer">
         <p className="disclaimer">
-          Get to know me in just 3 minutes
+          {language === 'es' 
+            ? 'Conóceme en solo 3 minutos'
+            : 'Get to know me in just 3 minutes'
+          }
         </p>
       </div>
     </div>

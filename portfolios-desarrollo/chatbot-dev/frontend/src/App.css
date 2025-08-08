@@ -10,7 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1e1e1e;
+  background-color: #0f0f0f;
   color: #e0e0e0;
   overflow: hidden;
 }
@@ -19,6 +19,8 @@ body {
   display: flex;
   height: 100vh;
   width: 100vw;
+  position: relative;
+  background-color: #0f0f0f;
 }
 
 .main-container {
@@ -26,25 +28,46 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #0f0f0f;
+  position: relative;
 }
 
-/* Scrollbar personalizada */
+/* El contenedor principal ocupa todo el ancho cuando el sidebar está colapsado */
+.app.sidebar-collapsed .main-container {
+  width: 100%;
+  margin-left: 0;
+}
+
+/* Scrollbar personalizada global */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e1e1e;
+  background: #0f0f0f;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #444;
+  background: #2a2a2a;
   border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #3a3a3a;
+}
+
+/* Selección de texto */
+::selection {
+  background-color: rgba(74, 158, 255, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: rgba(74, 158, 255, 0.3);
+  color: #ffffff;
 }
 
 /* Animaciones globales */
@@ -59,29 +82,172 @@ body {
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* Utilidades */
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+.slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Focus styles globales */
+:focus-visible {
+  outline: 2px solid #4a9eff;
+  outline-offset: 2px;
+}
+
+/* Transiciones suaves para todos los elementos interactivos */
+button, a, input, textarea, select {
+  transition: all 0.2s ease;
+}
+
+/* Mejora de rendimiento */
+* {
+  will-change: auto;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .app {
-    flex-direction: column;
-  }
-  
   .sidebar {
-    width: 100%;
-    height: auto;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
+    width: 280px;
+    height: 100vh;
   }
   
-  .sidebar.mobile-open {
-    transform: translateX(0);
+  .sidebar:not(.collapsed) {
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.3);
   }
+
+  .floating-menu-btn {
+    display: flex !important;
+  }
+}
+
+/* Overlay para móviles cuando el sidebar está abierto */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Asegurar que el botón flotante siempre esté encima pero debajo del sidebar */
+.floating-menu-btn {
+  z-index: 900 !important;
+  position: fixed !important;
+  pointer-events: auto !important;
+}
+
+/* Loading animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+/* Mejoras de accesibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reducir movimiento para usuarios con preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tema oscuro mejorado */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Evitar el parpadeo del contenido */
+html {
+  background-color: #0f0f0f;
+}
+
+/* Mejora de la tipografía */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Enlaces */
+a {
+  color: #4a9eff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botones deshabilitados */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
