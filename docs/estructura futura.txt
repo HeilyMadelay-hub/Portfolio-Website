@@ -1,0 +1,282 @@
+## 🔍 **Analizando tu estructura actual en `portfolios-desarrollo/`**
+
+Basándome en lo que veo, tienes:
+```
+portfolios-desarrollo/
+└── chatbot-dev/       # Portfolio 1 (actual)
+    ├── frontend/
+    ├── backend/
+    └── (aquí quieres nginx para producción)
+```
+
+## 📋 **ESTRUCTURA PARA NOTION:**
+
+### **🚀 FASE 1: Portfolio Individual con Nginx (ACTUAL)**
+
+```
+chatbot-dev/
+├── docker-compose.yml      # Con nginx incluido
+├── nginx/
+│   └── nginx.conf         # Config para 1 portfolio
+├── frontend/
+│   ├── Dockerfile
+│   └── src/
+├── backend/
+│   ├── Dockerfile
+│   └── app/
+└── .env                   # Variables globales
+```
+
+**docker-compose.yml para PRODUCCIÓN individual:**
+```yaml
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"  # Para HTTPS
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl  # Certificados SSL
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    build: ./frontend
+    expose:
+      - "3000"  # Solo interno, nginx lo expone
+    environment:
+      - REACT_APP_API_URL=/api
+
+  backend:
+    build: ./backend
+    expose:
+      - "5000"  # Solo interno
+    env_file: .env
+    depends_on:
+      - chromadb
+      - ollama
+
+  chromadb:
+    image: chromadb/chroma
+    volumes:
+      - ./chroma-data:/chroma/chroma
+
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ./ollama-data:/root/.ollama
+```
+
+**nginx.conf para 1 portfolio:**
+```nginx
+server {
+    listen 80;
+    server_name tudominio.com;
+
+    # Frontend React
+    location / {
+        proxy_pass http://frontend:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+    }
+
+    # API Backend
+    location /api {
+        proxy_pass http://backend:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # SSL redirect (producción)
+    # return 301 https://$server_name$request_uri;
+}
+```
+
+---
+
+### **🏗️ FASE 2: Estructura Multi-Portfolio (FUTURA)**
+
+```
+portfolios-desarrollo/
+├── docker-compose.yml          # Orquestador maestro
+├── nginx/
+│   └── nginx.conf             # Router principal
+│
+├── landing-page/              # Página principal
+│   ├── Dockerfile
+│   ├── src/
+│   │   ├── index.html
+│   │   ├── portfolio-grid.js  # Links a los 3 portfolios
+│   │   └── styles.css
+│   └── package.json
+│
+├── portfolio-1-chatbot/       # Tu proyecto actual
+│   ├── frontend/
+│   ├── backend/
+│   ├── Dockerfile.frontend
+│   └── Dockerfile.backend
+│
+├── portfolio-2-fullstack/     # Segundo portfolio
+│   ├── Dockerfile
+│   ├── src/
+│   └── proyectos/
+│
+├── portfolio-3-creative/      # Tercer portfolio
+│   ├── Dockerfile
+│   ├── designs/
+│   └── gallery/
+│
+└── shared/                    # Recursos compartidos
+    ├── ssl/                   # Certificados
+    ├── assets/               # Imágenes comunes
+    └── analytics/            # Google Analytics
+```
+
+**docker-compose.yml MAESTRO:**
+```yaml
+version: '3.8'
+
+services:
+  # ROUTER PRINCIPAL
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./shared/ssl:/etc/nginx/ssl
+    depends_on:
+      - landing
+      - portfolio1-frontend
+      - portfolio1-backend
+      - portfolio2
+      - portfolio3
+
+  # LANDING PAGE
+  landing:
+    build: ./landing-page
+    container_name: main-landing
+    expose:
+      - "3000"
+
+  # PORTFOLIO 1 - CHATBOT
+  portfolio1-frontend:
+    build:
+      context: ./portfolio-1-chatbot
+      dockerfile: Dockerfile.frontend
+    expose:
+      - "3001"
+    environment:
+      - REACT_APP_API_URL=/portfolio/ai/api
+
+  portfolio1-backend:
+    build:
+      context: ./portfolio-1-chatbot
+      dockerfile: Dockerfile.backend
+    expose:
+      - "5001"
+    depends_on:
+      - chromadb
+      - ollama
+
+  # PORTFOLIO 2 - FULLSTACK
+  portfolio2:
+    build: ./portfolio-2-fullstack
+    expose:
+      - "3002"
+
+  # PORTFOLIO 3 - CREATIVE
+  portfolio3:
+    build: ./portfolio-3-creative
+    expose:
+      - "3003"
+
+  # SERVICIOS COMPARTIDOS
+  chromadb:
+    image: chromadb/chroma
+    volumes:
+      - ./shared-data/chroma:/chroma
+
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ./shared-data/ollama:/root/.ollama
+
+  # ANALYTICS (opcional)
+  plausible:
+    image: plausible/analytics
+    expose:
+      - "8000"
+```
+
+**nginx.conf MAESTRO:**
+```nginx
+upstream landing {
+    server landing:3000;
+}
+
+upstream portfolio1_front {
+    server portfolio1-frontend:3001;
+}
+
+upstream portfolio1_back {
+    server portfolio1-backend:5001;
+}
+
+server {
+    listen 80;
+    server_name tudominio.com;
+
+    # Landing page
+    location / {
+        proxy_pass http://landing;
+    }
+
+    # Portfolio 1 - AI Chat
+    location /portfolio/ai {
+        proxy_pass http://portfolio1_front;
+        # Rewrite para que React Router funcione
+        try_files $uri /portfolio/ai/index.html;
+    }
+
+    location /portfolio/ai/api {
+        proxy_pass http://portfolio1_back;
+        # Strip /portfolio/ai prefix
+        rewrite ^/portfolio/ai/api(.*)$ $1 break;
+    }
+
+    # Portfolio 2
+    location /portfolio/fullstack {
+        proxy_pass http://portfolio2:3002;
+    }
+
+    # Portfolio 3
+    location /portfolio/creative {
+        proxy_pass http://portfolio3:3003;
+    }
+
+    # Analytics
+    location /analytics {
+        proxy_pass http://plausible:8000;
+    }
+}
+```
+
+### **🎯 Ventajas de esta estructura:**
+
+1. **Modular**: Cada portfolio es independiente
+2. **Escalable**: Agregar portfolio 4, 5... es trivial
+3. **Mantenible**: Puedes actualizar uno sin afectar otros
+4. **Profesional**: Un dominio, múltiples proyectos
+5. **SEO Friendly**: URLs limpias como `/portfolio/ai`
+
+### **📝 Para tu Notion:**
+- **Fase 1**: Implementar nginx ahora (preparando para el futuro)
+- **Fase 2**: Estructura completa cuando tengas los 3 portfolios
+- **Beneficio**: No tendrás que rehacer nada, solo mover carpetas
