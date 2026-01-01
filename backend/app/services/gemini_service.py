@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai
 import os
 import logging
 
@@ -9,13 +9,17 @@ class GeminiService:
         api_key = os.getenv('GOOGLE_API_KEY')
         if not api_key:
             logger.error("❌ GOOGLE_API_KEY no configurada")
+            self.client = None
         else:
-            genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-1.5-flash')
-            logger.info("✅ GeminiService inicializado")
+            self.client = genai.Client(api_key=api_key)
+            self.model = 'gemini-2.5-flash'
+            logger.info("✅ GeminiService inicializado con gemini-2.5-flash")
 
     async def generate(self, message: str, context: str) -> str:
         """Genera respuesta con contexto"""
+        if not self.client:
+            return "Error: API key no configurada"
+            
         prompt = f"""
         Eres Heily, desarrolladora backend especializada en IA.
         Responde EN PRIMERA PERSONA.
@@ -27,9 +31,10 @@ class GeminiService:
         """
 
         try:
-            # Nota: generate_content no es async por defecto en la SDK de Google, 
-            # pero podemos envolverlo si fuera necesario.
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt
+            )
             return response.text
         except Exception as e:
             logger.error(f"Error en GeminiService: {str(e)}")

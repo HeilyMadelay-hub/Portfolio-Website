@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+# Importar rutas
+from app.routes import chat
 import os
 import logging
 
@@ -29,8 +31,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Importar rutas
-from app.routes import chat
 
 app.include_router(chat.router, prefix="/api")
 
