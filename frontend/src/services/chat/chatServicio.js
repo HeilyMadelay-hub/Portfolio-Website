@@ -1,5 +1,8 @@
 // 📡 ChatServicio.js - Puente entre Frontend y Backend
 // Conecta tu React con tu backend FastAPI
+// 🚨 Incluye modo de emergencia para cuando el backend no esté disponible
+
+import emergencyMode from './emergencyMode.js';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
@@ -7,6 +10,9 @@ class ChatService {
   constructor() {
     this.baseURL = API_BASE_URL;
     this.timeout = 30000; // 30 segundos máximo
+    this.backendAvailable = null; // null = no verificado, true/false = estado conocido
+    this.lastHealthCheck = 0;
+    this.healthCheckInterval = 30000; // Verificar cada 30 segundos
   }
 
   /**
@@ -14,7 +20,7 @@ class ChatService {
    * @param {string} message - Lo que escribió el usuario
    * @param {string} section - Sección actual (sobreheily, proyectos, etc)
    * @param {AbortSignal} signal - Para cancelar request si es necesario
-   * @returns {Promise<Object>} - Respuesta del backend
+   * @returns {Promise<Object>} - Respuesta del backend o modo emergencia
    */
   async sendMessage(message, section = 'sobreheily', signal = null) {
     try {
@@ -74,6 +80,12 @@ class ChatService {
       
       console.log('✅ Respuesta del backend:', data);
 
+      // ✅ Backend funcionando - desactivar modo emergencia si estaba activo
+      if (emergencyMode.isActive) {
+        emergencyMode.deactivate();
+      }
+      this.backendAvailable = true;
+
       // 🔍 PASO 9: Validar que la respuesta tiene lo que esperamos
       if (!data.response) {
         throw new Error('Respuesta inválida del servidor');
@@ -99,18 +111,35 @@ class ChatService {
       console.error('❌ Error en ChatService:', error);
 
       // 🌐 Errores de red (sin internet, backend caído, etc)
+      // 🚨 ACTIVAR MODO DE EMERGENCIA
       if (error.message.includes('Failed to fetch') || 
           error.message.includes('NetworkError') ||
-          error.message.includes('Type error')) {
-        throw new Error('Error de conexión. Verifica tu internet e intenta de nuevo.');
+          error.message.includes('Type error') ||
+          error.message.includes('fetch')) {
+        
+        console.warn('🚨 Backend no disponible, activando modo de emergencia...');
+        this.backendAvailable = false;
+        emergencyMode.activate('No se puede conectar con el servidor');
+        
+        // 🆘 Retornar respuesta de emergencia en lugar de error
+        return emergencyMode.generateResponse(message);
       }
 
-      // ⏰ Timeout
-      if (error.message.includes('timeout')) {
-        throw new Error('La respuesta está tardando mucho. Intenta de nuevo.');
+      // ⏰ Timeout - también usar modo emergencia
+      if (error.message.includes('timeout') || error.name === 'AbortError') {
+        console.warn('🚨 Timeout del backend, activando modo de emergencia...');
+        this.backendAvailable = false;
+        emergencyMode.activate('El servidor está tardando demasiado');
+        
+        return emergencyMode.generateResponse(message);
       }
 
-      // 🔄 Re-throw otros errores tal como están
+      // 🔄 Para otros errores, intentar modo emergencia también
+      if (!this.backendAvailable) {
+        emergencyMode.activate(error.message);
+        return emergencyMode.generateResponse(message);
+      }
+
       throw error;
     }
   }

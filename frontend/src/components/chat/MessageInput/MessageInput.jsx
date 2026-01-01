@@ -12,7 +12,7 @@ const MessageInput = ({ language, onSendMessage }) => {
       setIsLoading(true);
 
       try {
-        // 📤 Llamar al servicio
+        // 📤 Llamar al servicio (ahora incluye modo emergencia automático)
         const response = await chatService.sendMessage(
           message.trim(),
           'sobreheily' // Cambia según la sección que necesites
@@ -20,6 +20,11 @@ const MessageInput = ({ language, onSendMessage }) => {
 
         console.log('✅ Bot respondió:', response.response);
         console.log('📊 Metadata:', response.metadata);
+        
+        // 🚨 Log si estamos en modo emergencia
+        if (response.isEmergency) {
+          console.warn('⚠️ Respuesta desde modo de emergencia');
+        }
 
         // Si hay función del padre, llamarla
         if (onSendMessage) {
@@ -30,7 +35,11 @@ const MessageInput = ({ language, onSendMessage }) => {
         setMessage('');
       } catch (error) {
         console.error('❌ Error:', error.message);
-        alert(`Error: ${error.message}`);
+        // Solo mostrar alert para errores que no sean de conexión
+        // (el modo emergencia ya maneja los errores de conexión)
+        if (error.name !== 'AbortError') {
+          console.warn('Error no manejado:', error.message);
+        }
       } finally {
         setIsLoading(false);
       }
