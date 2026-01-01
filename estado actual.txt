@@ -270,3 +270,4 @@ Testing: ❌ 0/10
 Config: ⚠️ 5/10
 Conclusión: Frontend luce mejor visualmente pero necesita trabajo en infraestructura (tests, error handling, state management). Backend es más robusto pero necesita simplificación.
 
+PS C:\Users\heily\Desktop\portfolio\chatbot-dev\frontend> npm run dev
