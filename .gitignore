@@ -1,47 +1,89 @@
-# Dependencies
-node_modules/
-*/node_modules/
-
-# Production builds
-build/
-dist/
-*/build/
-*/dist/
+# ============================================
+# Portfolio Chatbot .gitignore
+# ============================================
 
 # Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*/.env
+.env.development
+.env.production
 
-# Logs
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Flask
+instance/
+.webassets-cache
+
+# ChromaDB / Vector Database
+backend/app/data/vectorstore/
+*.sqlite3
+*.db
+
+# Personal documents (keep structure but ignore content)
+backend/app/data/documents/*.pdf
+backend/app/data/documents/*.docx
+backend/app/data/documents/*.doc
+backend/app/data/documents/*.txt
+backend/app/data/documents/*.md
+!backend/app/data/documents/README.md
+
+# Node.js / React
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# OS files
-.DS_Store
-Thumbs.db
+# React build
+frontend/build/
+frontend/dist/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
-# Python (for Flask backend)
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-.venv/
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
 
 # Docker
-.docker/
+.dockerignore
 
-# Temporary files
+# Backup files
+*.bak
+*.backup
 *.tmp
-*.temp
+
+# Testing
+coverage/
+.coverage
+.pytest_cache/
+
+# Misc
+*.tgz
+*.tar.gz
 .cache/
+.parcel-cache/
