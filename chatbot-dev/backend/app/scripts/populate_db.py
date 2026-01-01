@@ -1,1 +1,0 @@
-# ELIMINADO - Script legacy que usaba servicios obsoletos
