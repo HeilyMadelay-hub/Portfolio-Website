@@ -1,5 +1,5 @@
 // 📡 ChatServicio.js - Puente entre Frontend y Backend
-// Conecta tu React con tu Flask API
+// Conecta tu React con tu backend FastAPI
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 

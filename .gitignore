@@ -25,10 +25,27 @@ venv.bak/
 instance/
 .webassets-cache
 
-# ChromaDB / Vector Database
+# ============================================
+# Data & Persistence (IMPORTANT)
+# ============================================
+
+# ChromaDB / Vector Database - Data persistence
+data/
+chroma-data/
 backend/app/data/vectorstore/
 *.sqlite3
 *.db
+
+# ============================================
+# Infrastructure Secrets (Never commit)
+# ============================================
+
+# SSL Certificates
+infrastructure/ssl/*.pem
+infrastructure/ssl/*.key
+infrastructure/ssl/*.crt
+infrastructure/ssl/*.csr
+ssl/
 
 # Personal documents (keep structure but ignore content)
 backend/app/data/documents/*.pdf

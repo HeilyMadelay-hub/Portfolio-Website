@@ -3,7 +3,6 @@
 <div align="center">
 
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
-![Flask](https://img.shields.io/badge/flask-3.0.0-green.svg)
 ![FastAPI](https://img.shields.io/badge/fastapi-0.104.1-009688.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-2496ED.svg)
 ![License](https://img.shields.io/badge/license-MIT-purple.svg)
@@ -37,7 +36,7 @@ Sistema de chatbot avanzado que implementa una arquitectura híbrida RAG (Retrie
 - **Vector DB**: ChromaDB
 - **Embeddings**: Sentence Transformers
 - **Cache**: Redis/Memory
-- **Frameworks**: Flask & FastAPI
+- **Framework**: FastAPI (Python)
 - **Monitoring**: Dashboard en tiempo real
 
 ## 📦 Instalación
@@ -79,13 +78,8 @@ python scripts/populate_db.py populate
 
 6. **Ejecutar la aplicación**
 ```bash
-# Con Flask (default)
+# API FastAPI
 python main.py
-
-# Con FastAPI
-USE_FASTAPI=true python main.py
-# o
-python main.py fastapi
 ```
 
 ### Instalación con Docker
@@ -255,7 +249,6 @@ tests/
 
 | Variable | Descripción | Default |
 |----------|-------------|---------|
-| `USE_FASTAPI` | Usar FastAPI en vez de Flask | `false` |
 | `PORT` | Puerto del servidor | `5000` |
 | `GOOGLE_API_KEY` | API Key de Gemini | Required |
 | `RATE_LIMIT_ENABLED` | Activar rate limiting | `true` |

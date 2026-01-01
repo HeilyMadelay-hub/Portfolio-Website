@@ -40,11 +40,11 @@ RUN mkdir -p /app/logs \
 RUN chmod +x scripts/*.py
 
 # Expose ports
-EXPOSE 5000 8000
+EXPOSE 5000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python scripts/health_check.py || exit 1
+    CMD curl -f http://localhost:5000/api/health || exit 1
 
-# Default command (can be overridden)
-CMD ["python", "main.py"]
+# Default command
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]

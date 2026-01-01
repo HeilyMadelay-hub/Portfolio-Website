@@ -4,13 +4,11 @@ services:
   # Main application
   chatbot:
     build: .
-    container_name: chatbot-hybrid
+    container_name: chatbot-fastapi
     ports:
-      - "5000:5000"  # Flask
-      - "8000:8000"  # FastAPI
+      - "5000:5000"
     environment:
-      - USE_FASTAPI=${USE_FASTAPI:-false}
-      - PORT=${PORT:-5000}
+      - PORT=5000
       - DEBUG=${DEBUG:-false}
       - GOOGLE_API_KEY=${GOOGLE_API_KEY}
       - REDIS_URL=redis://redis:6379/0

@@ -58,7 +58,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./chroma-data:/chroma/chroma
+      - ./data/chroma:/chroma/chroma  # Datos persistentes (gitignored)
     environment:
       - IS_PERSISTENT=TRUE
     restart: unless-stopped
@@ -77,7 +77,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl  # Si usas HTTPS
+      - ./infrastructure/ssl:/etc/nginx/ssl:ro  # Certificados SSL
     depends_on:
       - frontend
       - backend
@@ -90,7 +90,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     restart: unless-stopped
     depends_on:
       - backend

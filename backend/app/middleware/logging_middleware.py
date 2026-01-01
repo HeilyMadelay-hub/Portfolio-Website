@@ -1,6 +1,6 @@
 """
 Middleware de logging estructurado y mascaramiento de PII
-Soporta FastAPI (middleware) y Flask (registro before/after)
+Soporta FastAPI mediante middleware ASGI
 """
 import logging
 import json
@@ -97,102 +97,4 @@ class StructuredLoggingMiddleware:
             pass
 
         return response
-
-
-# Funciones para Flask
-def register_flask_logging(app):
-    """Registra handlers before_request y after_request para flask"""
-    try:
-        from flask import request
-        import time
-        from flask import g
-
-        # Intentar importar helpers de prometheus de forma segura
-        try:
-            from ..monitoring.prometheus_exporter import inc_request, observe_response_time, inc_error
-        except Exception:
-            inc_request = None
-            observe_response_time = None
-            inc_error = None
-
-        @app.before_request
-        def _before():
-            try:
-                # Instrumentación: marcar inicio para medir latencia
-                try:
-                    g._start_time = time.time()
-                except Exception:
-                    g._start_time = None
-
-                # Incrementar contador de requests Prometheus si está disponible
-                try:
-                    if inc_request:
-                        endpoint = request.path or 'unknown'
-                        method = request.method or 'GET'
-                        inc_request(endpoint=endpoint, method=method)
-                except Exception:
-                    pass
-
-                payload = None
-                try:
-                    payload = request.get_data(as_text=True)[:1000]
-                except Exception:
-                    payload = None
-
-                headers = {k: v for k, v in request.headers.items()}
-                if 'Authorization' in headers:
-                    headers['Authorization'] = 'REDACTED'
-                if 'X-API-Key' in headers:
-                    headers['X-API-Key'] = 'REDACTED'
-
-                log_entry = {
-                    'event': 'request_received',
-                    'method': request.method,
-                    'path': request.path,
-                    'client': request.remote_addr,
-                    'headers': headers,
-                    'payload_preview': mask_pii(payload) if payload else None
-                }
-                logger.info(json.dumps(log_entry))
-            except Exception:
-                pass
-
-        @app.after_request
-        def _after(response):
-            try:
-                # Medir latencia y enviar a Prometheus si está disponible
-                try:
-                    if getattr(g, '_start_time', None):
-                        duration = time.time() - g._start_time
-                        if observe_response_time:
-                            endpoint = request.path or 'unknown'
-                            observe_response_time(endpoint=endpoint, seconds=duration)
-                except Exception:
-                    pass
-
-                response_log = {
-                    'event': 'response_sent',
-                    'method': request.method,
-                    'path': request.path,
-                    'status_code': response.status_code
-                }
-                logger.info(json.dumps(response_log))
-            except Exception:
-                pass
-            return response
-
-        # Registrar handler de errores para contar errores en Prometheus
-        @app.register_error_handler(Exception)
-        def _handle_exception(error):
-            try:
-                if inc_error:
-                    endpoint = request.path if request else 'unknown'
-                    inc_error(endpoint=endpoint, err_type=type(error).__name__)
-            except Exception:
-                pass
-            # Re-lanzar el error para que Flask lo maneje normalmente
-            raise error
-
-        logger.info('Flask structured logging registered')
-    except Exception as e:
-        logger.warning(f'Could not register Flask logging: {e}')
+        return response

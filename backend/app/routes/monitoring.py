@@ -1,280 +1,53 @@
 """
-Monitoring Routes para el sistema híbrido de chatbot
-Proporciona métricas, estadísticas y dashboards según el diagrama
+Monitoring Routes (FastAPI-only)
+Expone un dashboard simple y las métricas Prometheus.
 """
 
 import logging
-from typing import Dict, Any, Optional, List
-from datetime import datetime, timedelta
-import json
-
-# Compatibilidad con FastAPI y Flask
-try:
-    from fastapi import APIRouter, Request, Query, HTTPException, status
-    from fastapi.responses import HTMLResponse
-    USE_FASTAPI = True
-except ImportError:
-    from flask import Blueprint, request, jsonify, render_template_string
-    USE_FASTAPI = False
+from typing import Optional
+from fastapi import APIRouter, Request, Query
+from fastapi.responses import HTMLResponse, Response
 
 from ..monitoring.prometheus_exporter import get_metrics as prometheus_get_metrics
-from ..config.settings import Config
 
 logger = logging.getLogger(__name__)
 
-# ==================== IMPLEMENTACIÓN FASTAPI ====================
-if USE_FASTAPI:
-    router = APIRouter(prefix="/api/monitoring", tags=["monitoring"])
-    
-    @router.get("/dashboard")
-    async def monitoring_dashboard():
-        """
-        Dashboard HTML con métricas en tiempo real del sistema híbrido
-        """
-        dashboard_html = generate_dashboard_html()
-        return HTMLResponse(content=dashboard_html)
-    
-    @router.get("/metrics")
-    async def get_metrics(request: Request,
-        component: Optional[str] = Query(None, description="Componente específico"),
-        time_range: Optional[str] = Query("1h", description="Rango de tiempo (1h, 24h, 7d)")
-    ):
-        """
-        Obtiene métricas del sistema híbrido (protegido por API key admin en header X-API-Key)
-        
-        Args:
-            component: Componente específico o None para todos
-            time_range: Rango de tiempo para las métricas
-        """
-        # Validar API Key administradora desde header X-API-Key
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
+router = APIRouter(prefix="/api/monitoring", tags=["monitoring"])
 
-        try:
-            metrics = collect_system_metrics(component, time_range)
-            return metrics
-        except Exception as e:
-            logger.error(f"Error obteniendo métricas: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail={'error': str(e)}
-            )
-    
-    @router.get("/flow-stats")
-    async def get_flow_stats(request: Request):
-        """
-        Estadísticas del flujo de procesamiento según el diagrama
-        (protegido por API key admin en header X-API-Key)
-        """
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
 
-        try:
-            stats = collect_flow_statistics()
-            return stats
-        except Exception as e:
-            logger.error(f"Error obteniendo estadísticas de flujo: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail={'error': str(e)}
-            )
-    
-    @router.get("/performance")
-    async def get_performance_metrics(request: Request):
-        """
-        Métricas de rendimiento del sistema
-        (protegido por API key admin)
-        """
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
+def generate_dashboard_html() -> str:
+    """Genera un HTML mínimo para el dashboard de monitoring."""
+    return (
+        "<html><head><title>Monitoring Dashboard</title></head><body>"
+        "<h1>Monitoring Dashboard</h1>"
+        "<ul>"
+        "<li><a href='/api/monitoring/metrics'>Metrics (Prometheus)</a></li>"
+        "<li><a href='/api/monitoring/metrics/prometheus'>Prometheus raw</a></li>"
+        "</ul>"
+        "</body></html>"
+    )
 
-        try:
-            performance = collect_performance_metrics()
-            return performance
-        except Exception as e:
-            logger.error(f"Error obteniendo métricas de rendimiento: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail={'error': str(e)}
-            )
-    
-    @router.get("/alerts")
-    async def get_system_alerts(request: Request,
-        severity: Optional[str] = Query(None, description="Severidad (info, warning, error, critical)")
-    ):
-        """
-        Obtiene alertas del sistema (protegido por API key admin)
-        """
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
 
-        try:
-            alerts = collect_system_alerts(severity)
-            return alerts
-        except Exception as e:
-            logger.error(f"Error obteniendo alertas: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail={'error': str(e)}
-            )
-    
-    @router.get("/logs")
-    async def get_system_logs(request: Request,
-        level: Optional[str] = Query("INFO", description="Nivel de log"),
-        limit: Optional[int] = Query(100, description="Límite de logs"),
-        component: Optional[str] = Query(None, description="Componente específico")
-    ):
-        """
-        Obtiene logs del sistema (protegido por API key admin)
-        """
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
+@router.get("/dashboard")
+async def monitoring_dashboard():
+    """Dashboard HTML con métricas en tiempo real del sistema híbrido."""
+    dashboard_html = generate_dashboard_html()
+    return HTMLResponse(content=dashboard_html)
 
-        try:
-            logs = collect_system_logs(level, limit, component)
-            return logs
-        except Exception as e:
-            logger.error(f"Error obteniendo logs: {e}")
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail={'error': str(e)}
-            )
-    
-    @router.get('/prometheus')
-    async def prometheus_metrics(request: Request):
-        """Endpoint Prometheus metrics (protegido si Config.PROMETHEUS_ENABLED requiere admin)"""
-        if not Config.PROMETHEUS_ENABLED:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail={'error': 'prometheus_disabled'})
 
-        api_key = request.headers.get('x-api-key') if request else None
-        if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail={'error': 'admin_api_key_required'})
+@router.get("/metrics")
+async def metrics_endpoint(component: Optional[str] = Query(None, description="Componente específico"),
+                           time_range: Optional[str] = Query("1h", description="Rango de tiempo (1h, 24h, 7d)")):
+    """Retorna métricas en formato Prometheus (text/plain; version=0.0.4)."""
+    data, content_type = prometheus_get_metrics()
+    return Response(content=data, media_type=content_type)
 
-        try:
-            content, content_type = prometheus_get_metrics()
-            from fastapi.responses import Response
-            return Response(content=content, media_type=content_type)
-        except Exception as e:
-            logger.error(f"Error exportando métricas prometheus: {e}")
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail={'error': str(e)})
 
-# ==================== IMPLEMENTACIÓN FLASK ====================
-else:
-    monitoring_bp = Blueprint('monitoring', __name__)
-    
-    @monitoring_bp.route('/api/monitoring/dashboard', methods=['GET'])
-    def monitoring_dashboard():
-        """Dashboard HTML (Flask)"""
-        dashboard_html = generate_dashboard_html()
-        return dashboard_html, 200, {'Content-Type': 'text/html'}
-    
-    @monitoring_bp.route('/api/monitoring/metrics', methods=['GET'])
-    def get_metrics():
-        """Métricas del sistema (Flask)"""
-        try:
-            # Validar API key simple: header X-API-Key o query param api_key
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            component = request.args.get('component')
-            time_range = request.args.get('time_range', '1h')
-            metrics = collect_system_metrics(component, time_range)
-            return jsonify(metrics)
-        except Exception as e:
-            logger.error(f"Error obteniendo métricas: {e}")
-            return jsonify({'error': str(e)}), 500
-    
-    @monitoring_bp.route('/api/monitoring/flow-stats', methods=['GET'])
-    def get_flow_stats():
-        """Estadísticas de flujo (Flask)"""
-        try:
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            stats = collect_flow_statistics()
-            return jsonify(stats)
-        except Exception as e:
-            logger.error(f"Error obteniendo estadísticas: {e}")
-            return jsonify({'error': str(e)}), 500
-    
-    @monitoring_bp.route('/api/monitoring/performance', methods=['GET'])
-    def get_performance_metrics():
-        """Métricas de rendimiento (Flask)"""
-        try:
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            performance = collect_performance_metrics()
-            return jsonify(performance)
-        except Exception as e:
-            logger.error(f"Error obteniendo rendimiento: {e}")
-            return jsonify({'error': str(e)}), 500
-    
-    @monitoring_bp.route('/api/monitoring/alerts', methods=['GET'])
-    def get_system_alerts():
-        """Alertas del sistema (Flask)"""
-        try:
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            severity = request.args.get('severity')
-            alerts = collect_system_alerts(severity)
-            return jsonify(alerts)
-        except Exception as e:
-            logger.error(f"Error obteniendo alertas: {e}")
-            return jsonify({'error': str(e)}), 500
-    
-    @monitoring_bp.route('/api/monitoring/logs', methods=['GET'])
-    def get_system_logs():
-        """Logs del sistema (Flask)"""
-        try:
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            level = request.args.get('level', 'INFO')
-            limit = int(request.args.get('limit', 100))
-            component = request.args.get('component')
-            logs = collect_system_logs(level, limit, component)
-            return jsonify(logs)
-        except Exception as e:
-            logger.error(f"Error obteniendo logs: {e}")
-            return jsonify({'error': str(e)}), 500
-    
-    @monitoring_bp.route('/api/monitoring/prometheus', methods=['GET'])
-    def prometheus_metrics_flask():
-        """Endpoint Prometheus metrics (Flask)"""
-        try:
-            api_key = request.headers.get('X-API-Key') or request.args.get('api_key')
-            if Config.PROMETHEUS_ENABLED is not True:
-                return jsonify({'error': 'prometheus_disabled'}), 404
-
-            if Config.ADMIN_API_KEY_REQUIRED and not Config.is_valid_admin_key(api_key):
-                return jsonify({'error': 'admin_api_key_required'}), 403
-
-            try:
-                # importar generador de métricas de forma segura
-                from ..monitoring.prometheus_exporter import get_metrics as prometheus_get_metrics
-                content, content_type = prometheus_get_metrics()
-                return content, 200, {'Content-Type': content_type}
-            except Exception as e:
-                logger.error(f"Error exportando métricas prometheus (Flask): {e}")
-                return jsonify({'error': str(e)}), 500
-        except Exception as e:
-            logger.error(f"Error en endpoint prometheus Flask: {e}")
-            return jsonify({'error': str(e)}), 500
-
-    router = monitoring_bp
-
+@router.get("/metrics/prometheus")
+async def prometheus_raw():
+    """Alias para obtener las métricas Prometheus en bruto."""
+    data, content_type = prometheus_get_metrics()
+    return Response(content=data, media_type=content_type)
 # ==================== FUNCIONES DE RECOLECCIÓN DE MÉTRICAS ====================
 
 def collect_system_metrics(component: Optional[str] = None, time_range: str = "1h") -> Dict[str, Any]:

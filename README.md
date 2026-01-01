@@ -20,7 +20,7 @@ Un chatbot inteligente que responde preguntas sobre tu perfil profesional usando
 - CSS moderno con variables
 
 ### Backend
-- Flask (Python)
+- FastAPI (Python)
 - Google Gemini AI
 - LangChain (RAG)
 - ChromaDB (base de datos vectorial)

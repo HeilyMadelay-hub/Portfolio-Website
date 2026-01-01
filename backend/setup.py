@@ -233,10 +233,8 @@ def print_next_steps():
     print("   Edit .env and add your Google Gemini API key")
     
     print("\n2. Start the application:")
-    print("   With Flask (default):")
-    print(f"   {Colors.YELLOW}python main.py{Colors.ENDC}")
     print("   With FastAPI:")
-    print(f"   {Colors.YELLOW}USE_FASTAPI=true python main.py{Colors.ENDC}")
+    print(f"   {Colors.YELLOW}python main.py{Colors.ENDC}")
     
     print("\n3. Access the application:")
     print(f"   Chat API: {Colors.BLUE}http://localhost:5000/api/chat{Colors.ENDC}")

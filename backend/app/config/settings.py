@@ -24,9 +24,9 @@ class Config:
     GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-pro')
     EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'models/embedding-001')
     
-    # Flask Configuration
+    # Application Configuration
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
-    DEBUG = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
+    DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
     
     # CORS
     CORS_ORIGINS = os.getenv('CORS_ORIGINS', "http://localhost:3000,http://127.0.0.1:3000").split(',')

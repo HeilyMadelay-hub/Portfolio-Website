@@ -1,6 +1,6 @@
 """
 Main entry point para el sistema híbrido de chatbot
-Soporta tanto Flask como FastAPI
+Implementación con FastAPI
 """
 
 import os
@@ -15,27 +15,6 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-def run_flask():
-    """Ejecuta la aplicación con Flask"""
-    from app import create_flask_app
-    
-    app = create_flask_app()
-    
-    # Configuración del servidor
-    port = int(os.environ.get('PORT', 5000))
-    host = os.environ.get('HOST', '0.0.0.0')
-    debug = os.environ.get('DEBUG', 'True').lower() == 'true'
-    
-    logger.info(f"🚀 Starting Flask server on {host}:{port}")
-    logger.info(f"📊 Dashboard available at http://{host}:{port}/api/monitoring/dashboard")
-    logger.info(f"💬 Chat endpoint at http://{host}:{port}/api/chat")
-    
-    app.run(
-        host=host,
-        port=port,
-        debug=debug
-    )
-
 def run_fastapi():
     """Ejecuta la aplicación con FastAPI usando Uvicorn"""
     try:
@@ -45,7 +24,7 @@ def run_fastapi():
         sys.exit(1)
     
     # Configuración del servidor
-    port = int(os.environ.get('PORT', 8000))
+    port = int(os.environ.get('PORT', 5000))
     host = os.environ.get('HOST', '0.0.0.0')
     reload = os.environ.get('DEBUG', 'True').lower() == 'true'
     workers = int(os.environ.get('WORKERS', 1))
@@ -54,10 +33,9 @@ def run_fastapi():
     logger.info(f"📚 API Docs available at http://{host}:{port}/docs")
     logger.info(f"📊 Dashboard available at http://{host}:{port}/api/monitoring/dashboard")
     logger.info(f"💬 Chat endpoint at http://{host}:{port}/api/chat")
-    
+
     uvicorn.run(
-        "app:create_fastapi_app",
-        factory=True,
+        "app.main:app",
         host=host,
         port=port,
         reload=reload,
@@ -66,11 +44,8 @@ def run_fastapi():
     )
 
 def main():
-    """
-    Punto de entrada principal
-    Detecta qué framework usar basado en variables de entorno
-    """
-    
+    """Punto de entrada principal para la API FastAPI"""
+
     # Imprimir banner
     print("""
     ╔══════════════════════════════════════════════════════════╗
@@ -82,24 +57,9 @@ def main():
     ║                                                          ║
     ╚══════════════════════════════════════════════════════════╝
     """)
-    
-    # Detectar framework
-    use_fastapi = os.environ.get('USE_FASTAPI', 'false').lower() == 'true'
-    
-    # También se puede forzar con argumento de línea de comandos
-    if len(sys.argv) > 1:
-        if sys.argv[1] == 'fastapi':
-            use_fastapi = True
-        elif sys.argv[1] == 'flask':
-            use_fastapi = False
-    
-    # Ejecutar servidor apropiado
-    if use_fastapi:
-        logger.info("🚀 Starting with FastAPI framework")
-        run_fastapi()
-    else:
-        logger.info("🚀 Starting with Flask framework")
-        run_flask()
+
+    logger.info("🚀 Starting with FastAPI framework")
+    run_fastapi()
 
 if __name__ == '__main__':
     try:
