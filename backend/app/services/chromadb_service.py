@@ -1,0 +1,1 @@
+# ELIMINADO - Servicio legacy no alineado con arquitectura híbrida
