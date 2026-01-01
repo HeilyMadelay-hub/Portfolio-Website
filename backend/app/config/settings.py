@@ -16,13 +16,13 @@ class Config:
     VECTORSTORE_DIR = os.path.join(DATA_DIR, 'vectorstore')
     
     # RAG Configuration
-    CHUNK_SIZE = int(os.getenv('CHUNK_SIZE', 1000))
-    CHUNK_OVERLAP = int(os.getenv('CHUNK_OVERLAP', 200))
-    SIMILARITY_TOP_K = int(os.getenv('SIMILARITY_TOP_K', 3))
+    CHUNK_SIZE = int(os.getenv('CHUNK_SIZE', 500))
+    CHUNK_OVERLAP = int(os.getenv('CHUNK_OVERLAP', 50))
+    SIMILARITY_TOP_K = int(os.getenv('SIMILARITY_TOP_K', 5))
     
     # Gemini Configuration
-    GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-pro')
-    EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'models/embedding-001')
+    GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+    EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'models/text-embedding-004')
     
     # Application Configuration
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')

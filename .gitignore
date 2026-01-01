@@ -1,106 +1,426 @@
 # ============================================
-# Portfolio Chatbot .gitignore
+# Portfolio Chatbot - .gitignore
+# Actualizado: Enero 2026
 # ============================================
 
-# Environment variables
+# ============================================
+# ENVIRONMENT VARIABLES (Crítico - nunca subir)
+# ============================================
 .env
-.env.local
-.env.development
-.env.production
+.env.*
+!.env.example
+*.env
+.envrc
 
-# Python
+# ============================================
+# BACKEND - Python / FastAPI
+# ============================================
+
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
+
+# Distribution / packaging
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
 env/
 venv/
+.venv/
 ENV/
 env.bak/
 venv.bak/
-.venv/
+.virtualenv/
+Pipfile.lock
+poetry.lock
 
-# Flask
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Flask/Django
 instance/
 .webassets-cache
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+
+# Scrapy
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pdm
+.pdm.toml
+.pdm-python
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
+*.sage.py
+
+# Spyder / Rope
+.spyderproject
+.spyproject
+.ropeproject
+
+# mkdocs
+/site
+
+# Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+cython_debug/
 
 # ============================================
-# Data & Persistence (IMPORTANT)
+# BACKEND - Data & AI/ML (IMPORTANTE)
 # ============================================
 
-# ChromaDB / Vector Database - Data persistence
-data/
+# ChromaDB / Vector Database
+data/chroma/
+data/database/
+data/embeddings/
+data/vectorstore/
 chroma-data/
+chroma.sqlite3
+*.chroma
+*.bin
+
+# Backend data persistence
+backend/data/
+backend/embeddings/
+backend/app/data/database/
+backend/app/data/embeddings/
 backend/app/data/vectorstore/
+
+# Embeddings y modelos
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.model
+*.pt
+*.pth
+*.onnx
+*.safetensors
+
+# SQLite databases
 *.sqlite3
+*.sqlite
 *.db
 
-# ============================================
-# Infrastructure Secrets (Never commit)
-# ============================================
-
-# SSL Certificates
-infrastructure/ssl/*.pem
-infrastructure/ssl/*.key
-infrastructure/ssl/*.crt
-infrastructure/ssl/*.csr
-ssl/
-
-# Personal documents (keep structure but ignore content)
+# Documentos personales (estructura sí, contenido no)
 backend/app/data/documents/*.pdf
 backend/app/data/documents/*.docx
 backend/app/data/documents/*.doc
 backend/app/data/documents/*.txt
-backend/app/data/documents/*.md
 !backend/app/data/documents/README.md
 
-# Node.js / React
+# NLTK / Spacy data
+nltk_data/
+spacy_data/
+
+# Sentence Transformers cache
+.cache/huggingface/
+.cache/torch/
+
+# ============================================
+# FRONTEND - React / Vite
+# ============================================
+
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+frontend/build/
+frontend/dist/
+frontend/dist-ssr/
+build/
+dist/
+
+# Testing
+coverage/
+
+# Production
+*.local
+
+# Parcel / cache
+.cache/
+.parcel-cache/
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# React build
-frontend/build/
-frontend/dist/
+# Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
 
-# IDE
-.vscode/
+# ESLint / Prettier cache
+.eslintcache
+.prettiercache
+
+# Storybook
+storybook-static/
+
+# TypeScript
+*.tsbuildinfo
+
+# ============================================
+# INFRASTRUCTURE / DOCKER
+# ============================================
+
+# Docker
+.docker/
+*.dockerignore
+
+# SSL Certificates (CRÍTICO - nunca subir)
+infrastructure/ssl/*.pem
+infrastructure/ssl/*.key
+infrastructure/ssl/*.crt
+infrastructure/ssl/*.csr
+infrastructure/ssl/*.p12
+ssl/
+*.key
+*.pem
+*.crt
+*.p12
+
+# Monitoring data
+prometheus-data/
+grafana-data/
+infrastructure/monitoring/data/
+
+# ============================================
+# IDEs & EDITORS
+# ============================================
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains (PyCharm, WebStorm, etc.)
 .idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Vim / Neovim
 *.swp
 *.swo
+*.swn
 *~
+.netrwhist
 
-# OS
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# ============================================
+# OPERATING SYSTEMS
+# ============================================
+
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# LOGS & TEMPORARY FILES
+# ============================================
 
 # Logs
-*.log
 logs/
+*.log
+log/
 
-# Docker
-.dockerignore
-
-# Backup files
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp
 *.bak
 *.backup
-*.tmp
+*.old
 
-# Testing
-coverage/
-.coverage
+# Cache
+cache/
+
+# ============================================
+# TESTING
+# ============================================
+
+# Test artifacts
+test_*.db
+test_cache/
+test_documents/
 .pytest_cache/
+htmlcov/
+.hypothesis/
 
-# Misc
+# E2E testing
+cypress/videos/
+cypress/screenshots/
+playwright-report/
+test-results/
+
+# ============================================
+# SECURITY & SECRETS
+# ============================================
+
+# API Keys / Secrets
+*.secret
+secrets/
+.secrets/
+credentials/
+*.credentials
+
+# SSH Keys
+*.rsa
+*.dsa
+*.ecdsa
+*.ed25519
+id_rsa*
+id_dsa*
+
+# ============================================
+# MISCELLANEOUS
+# ============================================
+
+# Compressed files
 *.tgz
 *.tar.gz
-.cache/
-.parcel-cache/
+*.zip
+*.rar
+*.7z
+
+# Backups
+backups/
+*.bkp
+
+# PIDs
+*.pid
+*.seed
+*.pid.lock
+
+# Redis
+dump.rdb
+
+# Archives
+*.tar
+*.gz
+
+# Keep structure files
+!.gitkeep
+!.keep
+!**/README.md

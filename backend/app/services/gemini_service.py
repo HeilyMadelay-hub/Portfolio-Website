@@ -1,19 +1,20 @@
 from google import genai
 import os
 import logging
+from app.config.settings import Config
 
 logger = logging.getLogger(__name__)
 
 class GeminiService:
     def __init__(self):
-        api_key = os.getenv('GOOGLE_API_KEY')
+        api_key = os.getenv('GOOGLE_API_KEY') or Config.GOOGLE_API_KEY
         if not api_key:
             logger.error("❌ GOOGLE_API_KEY no configurada")
             self.client = None
         else:
             self.client = genai.Client(api_key=api_key)
-            self.model = 'gemini-2.5-flash'
-            logger.info("✅ GeminiService inicializado con gemini-2.5-flash")
+            self.model = Config.GEMINI_MODEL
+            logger.info(f"✅ GeminiService inicializado con {self.model}")
 
     async def generate(self, message: str, context: str) -> str:
         """Genera respuesta con contexto"""
