@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'portfolio-backend'
+    static_configs:
+      - targets: ['backend:5000']
+    metrics_path: '/api/monitoring/prometheus'
+    scheme: 'http'
