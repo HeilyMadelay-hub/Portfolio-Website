@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ChatArea.css';
+import MessageList from './MessageList/MessageList'; // Import del componente
 
-const ChatArea = ({ language, setLanguage, messages = [] }) => {
+const ChatArea = ({ language, setLanguage, messages = [], onSendMessage, onSectionClick }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   
@@ -21,9 +22,8 @@ const ChatArea = ({ language, setLanguage, messages = [] }) => {
       } else {
         clearInterval(typeInterval);
       }
-    }, 50); // Velocidad de escritura
+    }, 50);
     
-    // Cursor parpadeante
     const cursorInterval = setInterval(() => {
       setShowCursor(prev => !prev);
     }, 500);
@@ -33,76 +33,74 @@ const ChatArea = ({ language, setLanguage, messages = [] }) => {
       clearInterval(cursorInterval);
     };
   }, [currentTagline, language]);
+
+  const handleViewProjects = () => {
+    window.location.href = '/portfolio';
+  };
+
+  const handleContact = () => {
+    window.location.href = 'mailto:heilymadelayajtan@icloud.com?subject=Hola Heily - Nuevo Proyecto';
+  };
+
   return (
     <div className="chat-area">
-      {/* Botón de traducción */}
-      <button 
-        className={`translate-button ${messages.length > 0 ? 'minimal' : ''}`}
-        onClick={() => setLanguage(language === 'es' ? 'en' : 'es')}
-        title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" fill="currentColor"/>
-        </svg>
-        <span className="translate-text">{language === 'es' ? 'EN' : 'ES'}</span>
-      </button>
-      
+      {/* Header solo se muestra si no hay mensajes */}
       {messages.length === 0 && (
         <div className="chat-header">
           <div className="gradient-bg"></div>
-          <div className="chat-logo-container">
+          <div className="hero-container">
+            <div className="hero-photo-section">
+              <a 
+                href="https://www.linkedin.com/in/heilymajtan/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                <div className="chat-logo-circle">
+                  <img 
+                    src="/logo.png" 
+                    alt="Heily Madelay Tandazo" 
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  <span className="logo-placeholder" style={{display: 'none'}}>H</span>
+                </div>
+              </a>
+            </div>
 
-            <a 
-              href="https://www.linkedin.com/in/heilymajtan/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              style={{ display: 'inline-block' }}
-            >
-              <div className="chat-logo-circle">
-                <img 
-                  src="/logo.png" 
-                  alt="MadGPT" 
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'block';
-                  }}
-                />
-                <span className="logo-placeholder" style={{display: 'none'}}>M</span>
+            <div className="hero-info-section">
+              <h1 className="chat-title-gradient">Heily Madelay Tandazo</h1>
+              <p className="hero-subtitle">{language === 'es' ? 'Desarrolladora Full Stack & MultiCloud' : 'Full Stack & MultiCloud Developer'}</p>
+              
+              <div className="hero-availability">
+                <span className="availability-dot"></span>
+                <span>{language === 'es' ? 'Disponible' : 'Available'}</span>
               </div>
-            </a>
+              
+              <div className="hero-buttons">
+                <button className="hero-btn hero-btn-primary" onClick={handleViewProjects}>
+                  {language === 'es' ? 'Ver Portfolio Profesional' : 'View Professional Portfolio'}
+                </button>
+                <button className="hero-btn hero-btn-secondary" onClick={handleContact}>
+                  {language === 'es' ? 'Hablemos' : "Let's Talk"}
+                </button>
+              </div>
 
-            <h1 className="chat-title">Mad-GPT</h1>
-            <p className="tagline">{language === 'es' ? 'Desarrolladora Full Stack & MultiCloud ' : 'Full Stack & MultiCloud Developer'}</p>
-            <p className="tagline2">
-              <em>{displayedText}</em>
-              <span className={`cursor ${showCursor ? 'visible' : ''}`}>|</span>
-            </p>
+              <div className="hero-social-links">
+                <a href="https://github.com/HeilyMadelay-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/heilymajtan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:heilymadelayajtan@icloud.com">heilymadelayajtan@icloud.com</a>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      <div className="messages-container">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.type}`}>
-            <div className="message-content">
-              {msg.content}
-            </div>
-            {msg.metadata && (
-              <div className="message-metadata">
-                <small>{msg.metadata.source || ''}</small>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {/* MessageList maneja todo el renderizado de mensajes */}
+      <MessageList messages={messages} language={language} />
     </div>
   );
 };
 
 export default ChatArea;
-
-
-
-
-
-

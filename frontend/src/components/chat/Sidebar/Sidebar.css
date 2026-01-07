@@ -1,11 +1,11 @@
 .sidebar {
   width: 280px;
   height: 100vh;
-  background-color: #1a1a1a;
-  color: #e0e0e0;
+  background-color: #18181B;
+  color: #E4E4E7;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #2a2a2a;
+  border-right: 1px solid #27272A;
   transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -35,16 +35,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid #27272A;
   min-height: 80px;
-  background-color: #161616;
+  background-color: #0A0A0F;
 }
 
 .sidebar-header h2 {
   margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 26px;
-  font-weight: 600;
-  color: #4a9eff;
+  font-weight: 700;
+  color: #A855F7;
   white-space: nowrap;
   overflow: hidden;
   letter-spacing: -0.5px;
@@ -53,7 +54,7 @@
 .menu-btn {
   background: none;
   border: none;
-  color: #888;
+  color: #A1A1AA;
   cursor: pointer;
   padding: 8px;
   border-radius: 8px;
@@ -67,14 +68,57 @@
 }
 
 .menu-btn:hover {
-  background-color: #2a2a2a;
-  color: #e0e0e0;
+  background-color: #27272A;
+  color: #E4E4E7;
 }
 
 .menu-btn svg {
   width: 24px;
   height: 24px;
   pointer-events: none;
+}
+
+/* Botón Nueva Conversación */
+.new-conversation-wrapper {
+  padding: 16px;
+  border-bottom: 1px solid #27272A;
+}
+
+.new-conversation-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+  border: none;
+  border-radius: 12px;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+}
+
+.new-conversation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+}
+
+.new-conversation-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(168, 85, 247, 0.3);
+}
+
+.new-conv-icon {
+  font-size: 16px;
+}
+
+.new-conv-text {
+  white-space: nowrap;
 }
 
 /* Secciones con mejor espaciado */
@@ -93,6 +137,8 @@
   white-space: nowrap;
   overflow: hidden;
   position: relative;
+  /* Para acciones */
+  justify-content: space-between;
 }
 
 .sidebar-section::before {
@@ -103,23 +149,41 @@
   transform: translateY(-50%);
   width: 3px;
   height: 0;
-  background: #4a9eff;
+  background: linear-gradient(180deg, #A855F7 0%, #EC4899 100%);
   border-radius: 0 3px 3px 0;
   transition: height 0.3s ease;
 }
 
 .sidebar-section:hover {
-  background-color: rgba(74, 158, 255, 0.08);
+  background-color: rgba(168, 85, 247, 0.08);
   padding-left: 19px;
 }
 
 .sidebar-section.active {
-  background-color: rgba(74, 158, 255, 0.12);
-  color: #4a9eff;
+  background-color: rgba(168, 85, 247, 0.12);
+  color: #A855F7;
 }
 
 .sidebar-section.active::before {
   height: 70%;
+}
+
+/* Highlight animation cuando se hace scroll a una sección */
+.sidebar-section.highlight {
+  animation: highlightPulse 1.5s ease-out;
+}
+
+@keyframes highlightPulse {
+  0% {
+    background-color: rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    transform: scale(1.02);
+  }
+  100% {
+    background-color: rgba(168, 85, 247, 0.12);
+    box-shadow: none;
+    transform: scale(1);
+  }
 }
 
 .section-icon {
@@ -145,9 +209,40 @@
 }
 
 .sidebar-section.active .section-name {
-  color: #4a9eff;
+  color: #A855F7;
   font-weight: 600;
 }
+
+/* Acciones de conversación */
+.conversation-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar-section.hovered .conversation-actions,
+.sidebar-section:hover .conversation-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+.pin-action, .delete-action {
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.18s, color 0.18s;
+}
+.pin-action:hover {
+  background: #18181B;
+  color: #A855F7;
+}
+.delete-action:hover {
+  background: #18181B;
+  color: #EC4899;
+}
+
 
 /* Conversaciones recientes mejoradas */
 .recent-conversations {
@@ -159,7 +254,7 @@
 
 .recent-conversations h3 {
   font-size: 11px;
-  color: #666;
+  color: #A1A1AA;
   margin: 24px 0 16px 4px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -188,14 +283,14 @@
   left: 16px;
   right: 16px;
   height: 1px;
-  background: #2a2a2a;
+  background: #27272A;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
 .conversation-item:hover {
-  background-color: #242424;
-  color: #e0e0e0;
+  background-color: #27272A;
+  color: #E4E4E7;
   padding-left: 20px;
 }
 
@@ -206,8 +301,8 @@
 /* Footer mejorado */
 .sidebar-footer {
   padding: 20px 16px;
-  border-top: 1px solid #2a2a2a;
-  background-color: #161616;
+  border-top: 1px solid #27272A;
+  background-color: #0A0A0F;
   margin-top: auto;
 }
 
@@ -222,7 +317,7 @@
 }
 
 .user-info:hover {
-  background-color: #242424;
+  background-color: #27272A;
 }
 
 .user-icon {
@@ -232,7 +327,7 @@
 }
 
 .user-location {
-  color: #888;
+  color: #A1A1AA;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -244,9 +339,9 @@
   position: fixed !important;
   top: 20px !important;
   left: 20px !important;
-  background-color: #1a1a1a !important;
-  border: 1px solid #2a2a2a !important;
-  color: #888 !important;
+  background-color: #18181B !important;
+  border: 1px solid #27272A !important;
+  color: #A1A1AA !important;
   cursor: pointer !important;
   padding: 11px !important;
   border-radius: 12px !important;
@@ -266,11 +361,11 @@
 }
 
 .floating-menu-btn:hover {
-  background-color: #242424 !important;
-  border-color: #3a3a3a !important;
+  background-color: #27272A !important;
+  border-color: #A855F7 !important;
   transform: scale(1.05) !important;
-  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-  color: #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  color: #E4E4E7 !important;
 }
 
 .floating-menu-btn:active {
@@ -352,7 +447,7 @@
 .conversation-item:focus,
 .menu-btn:focus,
 .floating-menu-btn:focus {
-  outline: 2px solid #4a9eff;
+  outline: 2px solid #A855F7;
   outline-offset: -2px;
 }
 
@@ -361,4 +456,141 @@
   transition-property: background-color, color, transform, opacity, padding;
   transition-duration: 0.2s;
   transition-timing-function: ease;
+}
+
+/* Selector de idioma en el sidebar */
+.sidebar-language-selector {
+  padding: 16px;
+  margin-top: auto;
+  border-top: 1px solid #27272A;
+  background-color: #0A0A0F;
+  display: flex;
+  gap: 8px;
+}
+
+.language-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid #27272A;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #A1A1AA;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.language-option:hover {
+  background-color: #27272A;
+  color: #E4E4E7;
+  border-color: #3F3F46;
+}
+
+.language-option.active {
+  background-color: rgba(168, 85, 247, 0.15);
+  border-color: #A855F7;
+  color: #A855F7;
+  font-weight: 600;
+}
+
+.language-option.active:hover {
+  background-color: rgba(168, 85, 247, 0.2);
+}
+
+@media (max-width: 768px) {
+  .sidebar-language-selector {
+    padding: 12px;
+    gap: 6px;
+  }
+  
+  .language-option {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Tooltip personalizado (más pro que el nativo) */
+.sidebar-section {
+  position: relative;
+}
+
+.sidebar-section::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(12px);
+  background-color: #18181B;
+  color: #E4E4E7;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  border: 1px solid #27272A;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-section:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(16px);
+  transition-delay: 0.5s; /* Aparece después de 0.5s */
+}
+
+/* Flecha del tooltip */
+.sidebar-section::before {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 6px 0;
+  border-color: transparent #18181B transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1001;
+}
+
+.sidebar-section:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+
+/*  En móvil, deshabilitar tooltips */
+@media (max-width: 768px) {
+  .sidebar-section::after,
+  .sidebar-section::before {
+    display: none;
+  }
+}
+
+/*  Mejorar legibilidad del texto truncado */
+.section-name {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #d0d0d0;
+  max-width: 180px; /* Ajusta según tu diseño */
+  flex: 1;
 }

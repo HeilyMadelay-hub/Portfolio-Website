@@ -1,16 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import Sidebar from './components/chat/Sidebar/Sidebar.jsx';
 import ChatArea from './components/chat/ChatArea/ChatArea.jsx';
 import MessageInput from './components/chat/MessageInput/MessageInput.jsx';
 function App() {
   const [messages, setMessages] = useState([]);
+  const [activeSection, setActiveSection] = useState('nueva');
+  const sidebarRef = useRef(null);
   
   const handleSendMessage = (message, response) => {
     setMessages(prev => [...prev, 
       { type: 'user', content: message },
       { type: 'bot', content: response.response, metadata: response.metadata }
     ]);
+  };
+
+  const handleSectionClick = (sectionId) => {
+    setActiveSection(sectionId);
+    // Scroll suave al sidebar si está colapsado
+    const sidebarElement = document.querySelector('.sidebar');
+    if (sidebarElement?.classList.contains('collapsed')) {
+      // Abrir sidebar
+      sidebarElement.classList.remove('collapsed');
+    }
+    // Scroll suave a la sección en el sidebar
+    setTimeout(() => {
+      const sectionElement = document.querySelector(`[data-section-id="${sectionId}"]`);
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        sectionElement.classList.add('highlight');
+        setTimeout(() => sectionElement.classList.remove('highlight'), 1500);
+      }
+    }, 100);
   };
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [language, setLanguage] = useState('es'); // Estado global para el idioma
@@ -40,13 +61,19 @@ function App() {
 
   return (
     <div className={`app ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-      <Sidebar language={language} />
+      <Sidebar 
+        language={language}
+        setLanguage={setLanguage}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
       <div className="main-container">
         <div className="chat-wrapper">
           <ChatArea 
             language={language} 
             setLanguage={setLanguage}
-            messages={messages} 
+            messages={messages}
+            onSectionClick={handleSectionClick}
           />
           <MessageInput 
             language={language} 

@@ -1,56 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ language }) => {
+const Sidebar = ({ language, setLanguage, activeSection: externalActiveSection, onSectionChange }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [activeSection, setActiveSection] = useState('nueva');
-
-   const secciones = [
-    { 
-      id: 'sobreheily', 
-      nombre: language === 'es' ? 'Sobre Mí' : 'About Me', 
-      icono: '👩🏻‍💻' 
-    },
-    { 
-      id: 'proyectos', 
-      nombre: language === 'es' ? 'Proyectos' : 'Projects', 
-      icono: '📁' 
-    },
-    { 
-      id: 'articulo', 
-      nombre: language === 'es' ? 'Artículos' : 'Articles', 
-      icono: '📰' 
-    },
-    { 
-      id: 'experiencia', 
-      nombre: language === 'es' ? 'Experiencia' : 'Experience', 
-      icono: '⚒️' 
-    },
-    { 
-      id: 'recomendaciones', 
-      nombre: language === 'es' ? 'Recomendaciones' : 'Recommendations', 
-      icono: '⭐' 
-    },
-    { 
-      id: 'contacto', 
-      nombre: language === 'es' ? 'Contacto' : 'Contact', 
-      icono: '📞' 
-    },
-    { 
-      id: 'modoprofesional', 
-      nombre: language === 'es' ? 'Portfolio Profesional' : 'Professional Portfolio', 
-      icono: '👩🏻‍💼' 
+  const [internalActiveSection, setInternalActiveSection] = useState('nueva');
+  
+  // Usar sección externa si existe, sino la interna
+  const activeSection = externalActiveSection || internalActiveSection;
+  
+  const handleSectionClick = (sectionId) => {
+    if (onSectionChange) {
+      onSectionChange(sectionId);
+    } else {
+      setInternalActiveSection(sectionId);
     }
-  ];
+  };
 
-  const conversacionesRecientes = language === 'es' 
+ const conversacionesRecientes = language === 'es' 
     ? [
-        'Discusión de proyecto con Heily',
-        'Artículos de Heily'
+        { 
+          id: 'proyecto', 
+          nombre: 'Conversación sobre proyecto', // Más claro
+          nombreCompleto: 'Conversación sobre proyecto con startup fintech', // Para tooltip
+          icono: '💬' 
+        },
+        { 
+          id: 'articulos', 
+          nombre: 'Artículos técnicos', // Más específico
+          nombreCompleto: 'Artículos técnicos que escribo',
+          icono: '📝' 
+        }
       ]
     : [
-        'Project discussion with Heily',
-        'Articles of Heily'
+        { 
+          id: 'proyecto', 
+          nombre: 'Project conversation',
+          nombreCompleto: 'Project conversation with fintech startup',
+          icono: '💬' 
+        },
+        { 
+          id: 'articulos', 
+          nombre: 'Technical articles',
+          nombreCompleto: 'Technical articles I write',
+          icono: '📝' 
+        }
       ];
 
   const toggleSidebar = () => {
@@ -69,7 +62,7 @@ const Sidebar = ({ language }) => {
     <>
       <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar-header">
-          <h2>{language === 'es' ? 'Secciones' : 'Sections'}</h2>
+          <h2>{language === 'es' ? 'Recientes' : 'Recents'}</h2>
           <button 
             className="menu-btn" 
             onClick={toggleSidebar} 
@@ -82,29 +75,54 @@ const Sidebar = ({ language }) => {
           </button>
         </div>
 
+        {/* Botón Nueva Conversación */}
+        <div className="new-conversation-wrapper">
+          <button className="new-conversation-btn" onClick={() => handleSectionClick('nueva')}>
+            <span className="new-conv-icon">➕</span>
+            <span className="new-conv-text">{language === 'es' ? 'Nueva conversación' : 'New conversation'}</span>
+          </button>
+        </div>
+
         <div className="sidebar-sections">
-          {secciones.map(seccion => (
+          {conversacionesRecientes.map(conv => (
             <div
-              key={seccion.id}
-              className={`sidebar-section ${activeSection === seccion.id ? 'active' : ''}`}
-              onClick={() => setActiveSection(seccion.id)}
+              key={conv.id}
+              data-section-id={conv.id}
+              className={`sidebar-section ${activeSection === conv.id ? 'active' : ''}`}
+              onClick={() => handleSectionClick(conv.id)}
+              onMouseEnter={e => e.currentTarget.classList.add('hovered')}
+              onMouseLeave={e => e.currentTarget.classList.remove('hovered')}
+              title={conv.nombreCompleto}
             >
-              <span className="section-icon">{seccion.icono}</span>
-              <span className="section-name">{seccion.nombre}</span>
+              <span className="section-icon">{conv.icono}</span>
+              <span className="section-name">{conv.nombre}</span>
+              <span className="conversation-actions">
+                <svg className="pin-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 12V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/>
+                </svg>
+                <svg className="delete-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+              </span>
             </div>
           ))}
         </div>
 
-       
-        <div className="recent-conversations">
-          <h3>{language === 'es' ? 'Conversaciones recientes' : 'Recent conversations'}</h3>
-          {conversacionesRecientes.map((conv, index) => (
-            <div key={index} className="conversation-item">
-              {conv}
-            </div>
-          ))}
+        {/* Selector de idioma */}
+        <div className="sidebar-language-selector">
+          <button 
+            className={`language-option ${language === 'es' ? 'active' : ''}`}
+            onClick={() => setLanguage && setLanguage('es')}
+          >
+            🇪🇸 Español
+          </button>
+          <button 
+            className={`language-option ${language === 'en' ? 'active' : ''}`}
+            onClick={() => setLanguage && setLanguage('en')}
+          >
+            🇬🇧 English
+          </button>
         </div>
-        
 
       </div>
 

@@ -54,7 +54,7 @@ const MessageInput = ({ language, onSendMessage }) => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder={language === 'es' ? 'Pregunta a MadGPT...' : 'Ask MadGPT...'}
+            placeholder={language === 'es' ? '💡 Ejemplos: "¿Qué stacks usas?", "¿Trabajas con startups?"':'💡 Examples: "Which stacks do you use?" "Do you work with startups?"'}
             className="message-input"
             disabled={isLoading}
           />
@@ -87,11 +87,21 @@ const MessageInput = ({ language, onSendMessage }) => {
         </div>
       </form>
 
+      {/* Micro-animación "Heily está pensando..." */}
+      {isLoading && (
+        <div className="heily-typing-indicator">
+          <span>{language === 'es' ? 'Heily está pensando' : 'Heily is thinking'}</span>
+          <span className="typing-dots">
+            <span>.</span><span>.</span><span>.</span>
+          </span>
+        </div>
+      )}
+
       <div className="input-footer">
         <p className="disclaimer">
           {language === 'es' 
-            ? 'Conóceme en solo 3 minutos'
-            : 'Get to know me in just 3 minutes'
+            ? 'Simulación con datos reales de mi portfolio'
+            : 'Simulation with real data from my portfolio'
           }
         </p>
       </div>
