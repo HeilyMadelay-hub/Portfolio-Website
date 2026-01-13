@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 
 // Importar componentes
 import Header from "../../components/professional_page/layout/Header";
-import Hero from '../../components/professional_page/sections/Hero';
-import AboutMe from '../../components/professional_page/sections/AboutMe';
-import Projects from '../../components/professional_page/sections/Projects';
-import Contact from '../../components/professional_page/sections/Contact';
+import Hero from "../../components/professional_page/sections/Hero/Hero";
+import AboutMe from '../../components/professional_page/sections/About/AboutMe';
+import Projects from '../../components/professional_page/sections/Projects/Projects';
+import Contact from '../../components/professional_page/sections/Contact/Contact';
 
 
 function ProfessionalPage() {

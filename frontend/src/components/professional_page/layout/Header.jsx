@@ -42,10 +42,26 @@ function Header() {
                     style={primaryButton}
                     onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#1D4ED8')}
                     onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2563EB')}
-                    onClick={() => window.open('/CV_Heily_Tandazo.pdf', '_blank')}
+                    onClick={() => {
+                        let file;
+                        switch (activeLang) {
+                            case 'EN':
+                                file = '/CV_Heily_Tandazo_EN.pdf';
+                                break;
+                            case 'FR':
+                                file = '/CV_Heily_Tandazo_FR.pdf';
+                                break;
+                            case 'ES':
+                            default:
+                                file = '/CV_Heily_Tandazo_ES.pdf';
+                                break;
+                        }
+                        window.open(file, '_blank');
+                    }}
                 >
                     DESCARGAR CV (PDF)
                 </button>
+
             </nav>
 
             {/* SELECTOR DE IDIOMA */}
