@@ -1,0 +1,32 @@
+/*Animaciones globales param Hero y ScrollIndicator */
+@keyframes moveGrid {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 800px 800px, 800px 800px;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.92;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1.00;
+        transform: scale(1.06);
+    }
+}
