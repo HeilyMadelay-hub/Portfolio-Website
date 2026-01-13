@@ -3,12 +3,100 @@
   "WorkspaceRootPath": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\services\\chat\\chatServicio.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\chat\\chatServicio.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\pages\\chat\\ChatPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\chat\\ChatPage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\hooks\\chat\\useChatState.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\hooks\\chat\\useChatState.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\data_profesionalview\\articles.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\data_profesionalview\\articles.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\constants\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\constants\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\config\\setupProxy.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\config\\setupProxy.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\Sidebar\\Sidebar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\SidebarEnhancements.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\Sidebar\\SidebarEnhancements.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\Sidebar\\Sidebar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\Sidebar\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\RecentsChats\\RecentsChats.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\RecentsChats\\RecentsChats.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\MessageInput\\MessageInput.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\MessageInput\\MessageInput.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\MessageInput\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatMessage\\ChatMessage.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatMessage\\ChatMessage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatArea\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatArea\\ChatArea.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatArea\\ChatArea.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\chat\\ChatArea\\MessageList\\MessageList.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\professional_page\\sections\\About\\AboutMe.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\professional_page\\sections\\About\\AboutMe.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:vite.config.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\heily\\Desktop\\portfolio\\frontend\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -127,19 +215,305 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "chatServicio.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\services\\chat\\chatServicio.js",
+              "RelativeDocumentMoniker": "src\\services\\chat\\chatServicio.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\services\\chat\\chatServicio.js",
+              "RelativeToolTip": "src\\services\\chat\\chatServicio.js",
+              "ViewState": "AgIAALQAAAAAAAAAAAAwwNIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:25:36.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatPage.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\pages\\chat\\ChatPage.jsx",
+              "RelativeDocumentMoniker": "src\\pages\\chat\\ChatPage.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\pages\\chat\\ChatPage.jsx",
+              "RelativeToolTip": "src\\pages\\chat\\ChatPage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:23:10.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "useChatState.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\hooks\\chat\\useChatState.js",
+              "RelativeDocumentMoniker": "src\\hooks\\chat\\useChatState.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\hooks\\chat\\useChatState.js",
+              "RelativeToolTip": "src\\hooks\\chat\\useChatState.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:23:04.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "articles.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\data_profesionalview\\articles.js",
+              "RelativeDocumentMoniker": "src\\data_profesionalview\\articles.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\data_profesionalview\\articles.js",
+              "RelativeToolTip": "src\\data_profesionalview\\articles.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:23:00.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "chat.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\constants\\chat.js",
+              "RelativeDocumentMoniker": "src\\constants\\chat.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\constants\\chat.js",
+              "RelativeToolTip": "src\\constants\\chat.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:22:55.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "setupProxy.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\config\\setupProxy.js",
+              "RelativeDocumentMoniker": "src\\config\\setupProxy.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\config\\setupProxy.js",
+              "RelativeToolTip": "src\\config\\setupProxy.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:22:51.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SidebarEnhancements.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\SidebarEnhancements.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\Sidebar\\SidebarEnhancements.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\SidebarEnhancements.css",
+              "RelativeToolTip": "src\\components\\chat\\Sidebar\\SidebarEnhancements.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:20:19.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Sidebar.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\Sidebar\\Sidebar.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.jsx",
+              "RelativeToolTip": "src\\components\\chat\\Sidebar\\Sidebar.jsx",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAmwJEAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:20:16.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Sidebar.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\Sidebar\\Sidebar.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\Sidebar.css",
+              "RelativeToolTip": "src\\components\\chat\\Sidebar\\Sidebar.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:20:15.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\index.js",
+              "RelativeDocumentMoniker": "src\\components\\chat\\Sidebar\\index.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\Sidebar\\index.js",
+              "RelativeToolTip": "src\\components\\chat\\Sidebar\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:20:13.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RecentsChats.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\RecentsChats\\RecentsChats.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.jsx",
+              "RelativeToolTip": "src\\components\\chat\\RecentsChats\\RecentsChats.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:20:08.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RecentsChats.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\RecentsChats\\RecentsChats.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\RecentsChats\\RecentsChats.css",
+              "RelativeToolTip": "src\\components\\chat\\RecentsChats\\RecentsChats.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:20:07.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MessageInput.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\MessageInput\\MessageInput.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.jsx",
+              "RelativeToolTip": "src\\components\\chat\\MessageInput\\MessageInput.jsx",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAmwGwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:19:04.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MessageInput.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\MessageInput\\MessageInput.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\MessageInput.css",
+              "RelativeToolTip": "src\\components\\chat\\MessageInput\\MessageInput.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:19:03.059Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\index.js",
+              "RelativeDocumentMoniker": "src\\components\\chat\\MessageInput\\index.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\MessageInput\\index.js",
+              "RelativeToolTip": "src\\components\\chat\\MessageInput\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:19:02.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ChatMessage.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatMessage\\ChatMessage.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.jsx",
+              "RelativeToolTip": "src\\components\\chat\\ChatMessage\\ChatMessage.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:18:55.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ChatMessage.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatMessage\\ChatMessage.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatMessage\\ChatMessage.css",
+              "RelativeToolTip": "src\\components\\chat\\ChatMessage\\ChatMessage.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:18:53.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "index.js",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\index.js",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatArea\\index.js",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\index.js",
+              "RelativeToolTip": "src\\components\\chat\\ChatArea\\index.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-13T22:18:51.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ChatArea.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatArea\\ChatArea.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.jsx",
+              "RelativeToolTip": "src\\components\\chat\\ChatArea\\ChatArea.jsx",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAmwGoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:17:53.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ChatArea.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatArea\\ChatArea.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\ChatArea.css",
+              "RelativeToolTip": "src\\components\\chat\\ChatArea\\ChatArea.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:17:51.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MessageList.jsx",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx",
+              "RelativeToolTip": "src\\components\\chat\\ChatArea\\MessageList\\MessageList.jsx",
+              "ViewState": "AgIAADgAAAAAAAAAAAAmwFwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-13T22:14:23.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MessageList.css",
+              "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.css",
+              "RelativeDocumentMoniker": "src\\components\\chat\\ChatArea\\MessageList\\MessageList.css",
+              "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\chat\\ChatArea\\MessageList\\MessageList.css",
+              "RelativeToolTip": "src\\components\\chat\\ChatArea\\MessageList\\MessageList.css",
+              "ViewState": "AgIAANIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-13T22:14:19.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "vite.config.js",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\vite.config.js",
               "RelativeDocumentMoniker": "vite.config.js",
               "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\vite.config.js",
               "RelativeToolTip": "vite.config.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2026-01-13T22:00:16.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 24,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -152,7 +526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 25,
               "Title": "App.jsx",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\App.jsx",
               "RelativeDocumentMoniker": "src\\App.jsx",
@@ -165,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 26,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\main.jsx",
               "RelativeDocumentMoniker": "src\\main.jsx",
@@ -178,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 27,
               "Title": "index.js",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\index.js",
               "RelativeDocumentMoniker": "src\\index.js",
@@ -191,7 +565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 28,
               "Title": "animations.css",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\styles\\animations.css",
               "RelativeDocumentMoniker": "src\\styles\\animations.css",
@@ -204,20 +578,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 22,
               "Title": "AboutMe.jsx",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\professional_page\\sections\\About\\AboutMe.jsx",
               "RelativeDocumentMoniker": "src\\components\\professional_page\\sections\\About\\AboutMe.jsx",
               "ToolTip": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\professional_page\\sections\\About\\AboutMe.jsx",
               "RelativeToolTip": "src\\components\\professional_page\\sections\\About\\AboutMe.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-01-13T21:16:52.536Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 29,
               "Title": "AboutMe.js",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\professional_page\\sections\\About\\style\\AboutMe.js",
               "RelativeDocumentMoniker": "src\\components\\professional_page\\sections\\About\\style\\AboutMe.js",
@@ -230,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 30,
               "Title": "ProfessionalPage.jsx",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\pages\\professionalpage\\ProfessionalPage.jsx",
               "RelativeDocumentMoniker": "src\\pages\\professionalpage\\ProfessionalPage.jsx",
@@ -243,7 +617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 31,
               "Title": "Projects.jsx",
               "DocumentMoniker": "C:\\Users\\heily\\Desktop\\portfolio\\frontend\\src\\components\\professional_page\\sections\\Projects\\Projects.jsx",
               "RelativeDocumentMoniker": "src\\components\\professional_page\\sections\\Projects\\Projects.jsx",

@@ -1,151 +1,151 @@
-// 🚨 EmergencyMode.js - Respuestas de fallback cuando el backend no está disponible
-// Este módulo permite que el chat siga funcionando con respuestas predefinidas
+// 🚨 EmergencyMode.js - Fallback responses when backend is unavailable
+// This module allows the chat to keep working with predefined responses
 
 class EmergencyMode {
-  constructor() {
-    this.isActive = false;
-    this.activationReason = '';
-    
-    // 📚 Respuestas predefinidas por categoría
-    this.responses = {
-      // Saludos
-      greeting: [
-        "¡Hola! 👋 Soy MadGPT, el asistente virtual de Heily. Actualmente estoy en modo offline, pero puedo darte información básica.",
-        "¡Bienvenido/a! 🌟 Estoy funcionando en modo limitado, pero aún puedo ayudarte con información general sobre Heily.",
-      ],
-      
-      // Sobre Heily
-      about: [
-        "Heily es una **Desarrolladora Full Stack & MultiCloud** apasionada por construir soluciones de IA escalables. Tiene experiencia en Python, JavaScript, React, FastAPI, y servicios cloud como AWS, GCP y Azure.",
-        "Heily se especializa en desarrollo web moderno, arquitecturas cloud y aplicaciones de inteligencia artificial. Le encanta crear proyectos innovadores que combinen estas tecnologías.",
-      ],
-      
-      // Habilidades
-      skills: [
-        "**Tecnologías principales de Heily:**\n\n• **Frontend:** React, TypeScript, Vite, TailwindCSS\n• **Backend:** Python, FastAPI, Node.js\n• **Cloud:** AWS, Google Cloud, Azure\n• **IA/ML:** LangChain, ChromaDB, Gemini API\n• **DevOps:** Docker, Kubernetes, CI/CD",
-        "Heily domina el stack completo: desde interfaces modernas con React hasta backends robustos con FastAPI, pasando por infraestructura cloud y soluciones de IA.",
-      ],
-      
-      // Proyectos
-      projects: [
-        "**Proyectos destacados de Heily:**\n\n🤖 **MadGPT** - Este chatbot con IA que estás usando ahora\n☁️ **Infraestructura Cloud** - Arquitecturas escalables en AWS/GCP\n📊 **Dashboards Analytics** - Visualización de datos en tiempo real",
-        "Heily ha trabajado en proyectos de chatbots con IA, sistemas RAG, aplicaciones web full-stack y arquitecturas cloud empresariales.",
-      ],
-      
-      // Contacto
-      contact: [
-        "**Formas de contactar a Heily:**\n\n📧 Email: [disponible en el portfolio]\n💼 LinkedIn: [perfil profesional]\n🐙 GitHub: [repositorios públicos]\n\n¡No dudes en escribirle!",
-        "Puedes encontrar los datos de contacto de Heily en la sección de contacto del portfolio. ¡Está siempre abierta a nuevas oportunidades!",
-      ],
-      
-      // Experiencia
-      experience: [
-        "Heily tiene experiencia trabajando con tecnologías modernas de desarrollo web y cloud. Ha participado en proyectos que involucran arquitecturas de microservicios, sistemas de IA y aplicaciones escalables.",
-        "Su experiencia abarca desde desarrollo frontend con React hasta backend con Python/FastAPI, incluyendo despliegues en múltiples plataformas cloud.",
-      ],
-      
-      // Educación/Certificaciones
-      education: [
-        "Heily cuenta con certificaciones en cloud computing y está constantemente aprendiendo nuevas tecnologías. Puedes ver más detalles en su perfil de LinkedIn.",
-      ],
-      
-      // Respuesta por defecto
-      default: [
-        "¡Gracias por tu pregunta! 🤔 Estoy en modo offline ahora mismo, así que mi capacidad de respuesta es limitada. Cuando el backend esté disponible, podré darte respuestas mucho más detalladas y personalizadas.\n\n**Mientras tanto, te sugiero:**\n• Explorar las secciones del portfolio\n• Revisar los proyectos de Heily\n• Volver a intentar en unos minutos",
-        "Hmm, esa es una buena pregunta, pero necesito el backend para darte una respuesta completa. 🔧 Estoy funcionando en modo de emergencia.\n\n¿Puedo ayudarte con algo más básico como información sobre Heily, sus habilidades o proyectos?",
-      ],
-      
-      // Error de sistema
-      systemError: [
-        "⚠️ **Modo Offline Activo**\n\nEl servidor no está disponible en este momento. Estoy funcionando con respuestas limitadas.\n\n¿En qué puedo ayudarte mientras tanto?",
-      ],
-    };
-    
-    // 🔍 Palabras clave para detectar intención
-    this.keywords = {
-      greeting: ['hola', 'hi', 'hello', 'hey', 'buenos días', 'buenas tardes', 'buenas noches', 'saludos', 'qué tal'],
-      about: ['quién es', 'quien es', 'sobre heily', 'about', 'cuéntame', 'presentación', 'descripción'],
-      skills: ['habilidades', 'skills', 'tecnologías', 'tecnologia', 'sabe hacer', 'conocimientos', 'lenguajes', 'frameworks', 'herramientas'],
-      projects: ['proyectos', 'projects', 'portfolio', 'trabajos', 'creado', 'desarrollado', 'aplicaciones'],
-      contact: ['contacto', 'contact', 'email', 'linkedin', 'github', 'redes', 'escribir', 'hablar'],
-      experience: ['experiencia', 'experience', 'trabajo', 'empleos', 'carrera', 'trayectoria'],
-      education: ['estudios', 'educación', 'certificaciones', 'cursos', 'formación', 'universidad'],
-    };
-  }
-  
-  /**
-   * 🔥 Activa el modo de emergencia
-   */
-  activate(reason = 'Backend no disponible') {
-    this.isActive = true;
-    this.activationReason = reason;
-    console.warn('🚨 Modo de emergencia ACTIVADO:', reason);
-  }
-  
-  /**
-   * ✅ Desactiva el modo de emergencia
-   */
-  deactivate() {
-    this.isActive = false;
-    this.activationReason = '';
-    console.log('✅ Modo de emergencia DESACTIVADO');
-  }
-  
-  /**
-   * 🎯 Detecta la intención del mensaje
-   */
-  detectIntent(message) {
-    const lowerMessage = message.toLowerCase().trim();
-    
-    for (const [intent, keywords] of Object.entries(this.keywords)) {
-      for (const keyword of keywords) {
-        if (lowerMessage.includes(keyword)) {
-          return intent;
-        }
-      }
+    constructor() {
+        this.isActive = false;
+        this.activationReason = '';
+
+        // 📚 Predefined responses by category
+        this.responses = {
+            // Greetings
+            greeting: [
+                "Hello! 👋 I'm MadGPT, Heily's virtual assistant. I'm currently in offline mode, but I can give you basic information.",
+                "Welcome! 🌟 I'm running in limited mode, but I can still help you with general information about Heily.",
+            ],
+
+            // About Heily
+            about: [
+                "Heily is a **Full Stack & MultiCloud Developer** passionate about building scalable AI solutions. She has experience in Python, JavaScript, React, FastAPI, and cloud services like AWS, GCP, and Azure.",
+                "Heily specializes in modern web development, cloud architectures, and artificial intelligence applications. She loves creating innovative projects that combine these technologies.",
+            ],
+
+            // Skills
+            skills: [
+                "**Heily's main technologies:**\n\n• **Frontend:** React, TypeScript, Vite, TailwindCSS\n• **Backend:** Python, FastAPI, Node.js\n• **Cloud:** AWS, Google Cloud, Azure\n• **AI/ML:** LangChain, ChromaDB, Gemini API\n• **DevOps:** Docker, Kubernetes, CI/CD",
+                "Heily masters the full stack: from modern interfaces with React to robust backends with FastAPI, including cloud infrastructure and AI solutions.",
+            ],
+
+            // Projects
+            projects: [
+                "**Heily's featured projects:**\n\n🤖 **MadGPT** - This AI chatbot you're using right now\n☁️ **Cloud Infrastructure** - Scalable architectures on AWS/GCP\n📊 **Analytics Dashboards** - Real-time data visualization",
+                "Heily has worked on AI chatbot projects, RAG systems, full-stack web applications, and enterprise cloud architectures.",
+            ],
+
+            // Contact
+            contact: [
+                "**Ways to contact Heily:**\n\n📧 Email: [available on portfolio]\n💼 LinkedIn: [professional profile]\n🐙 GitHub: [public repositories]\n\nFeel free to reach out!",
+                "You can find Heily's contact information in the contact section of the portfolio. She's always open to new opportunities!",
+            ],
+
+            // Experience
+            experience: [
+                "Heily has experience working with modern web development and cloud technologies. She has participated in projects involving microservices architectures, AI systems, and scalable applications.",
+                "Her experience spans from frontend development with React to backend with Python/FastAPI, including deployments on multiple cloud platforms.",
+            ],
+
+            // Education/Certifications
+            education: [
+                "Heily has certifications in cloud computing and is constantly learning new technologies. You can see more details on her LinkedIn profile.",
+            ],
+
+            // Default response
+            default: [
+                "Thanks for your question! 🤔 I'm in offline mode right now, so my response capacity is limited. When the backend is available, I'll be able to give you much more detailed and personalized answers.\n\n**Meanwhile, I suggest:**\n• Explore the portfolio sections\n• Check out Heily's projects\n• Try again in a few minutes",
+                "Hmm, that's a good question, but I need the backend to give you a complete answer. 🔧 I'm running in emergency mode.\n\nCan I help you with something more basic like information about Heily, her skills, or projects?",
+            ],
+
+            // System error
+            systemError: [
+                "⚠️ **Offline Mode Active**\n\nThe server is not available at this time. I'm running with limited responses.\n\nHow can I help you in the meantime?",
+            ],
+        };
+
+        // 🔍 Keywords to detect intent
+        this.keywords = {
+            greeting: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening', 'greetings', 'what\'s up', 'howdy'],
+            about: ['who is', 'about heily', 'about', 'tell me', 'introduction', 'description', 'who are you'],
+            skills: ['skills', 'technologies', 'technology', 'know how', 'knowledge', 'languages', 'frameworks', 'tools', 'stack'],
+            projects: ['projects', 'portfolio', 'work', 'created', 'developed', 'applications', 'built'],
+            contact: ['contact', 'email', 'linkedin', 'github', 'social', 'reach', 'write', 'talk'],
+            experience: ['experience', 'work', 'jobs', 'career', 'trajectory', 'background'],
+            education: ['studies', 'education', 'certifications', 'courses', 'training', 'university', 'degree'],
+        };
     }
-    
-    return 'default';
-  }
-  
-  /**
-   * 🎲 Obtiene una respuesta aleatoria de la categoría
-   */
-  getRandomResponse(category) {
-    const responses = this.responses[category] || this.responses.default;
-    const randomIndex = Math.floor(Math.random() * responses.length);
-    return responses[randomIndex];
-  }
-  
-  /**
-   * 📤 Genera una respuesta de emergencia
-   */
-  generateResponse(message) {
-    const intent = this.detectIntent(message);
-    const response = this.getRandomResponse(intent);
-    
-    return {
-      response: response,
-      metadata: {
-        source: 'emergency_mode',
-        intent: intent,
-        isOffline: true,
-        reason: this.activationReason,
-        timestamp: Date.now(),
-      },
-      error: null,
-      isEmergency: true,
-    };
-  }
-  
-  /**
-   * 🏥 Obtiene el mensaje inicial de modo offline
-   */
-  getOfflineGreeting() {
-    return this.getRandomResponse('systemError');
-  }
+
+    /**
+     * 🔥 Activate emergency mode
+     */
+    activate(reason = 'Backend not available') {
+        this.isActive = true;
+        this.activationReason = reason;
+        console.warn('🚨 Emergency mode ACTIVATED:', reason);
+    }
+
+    /**
+     * ✅ Deactivate emergency mode
+     */
+    deactivate() {
+        this.isActive = false;
+        this.activationReason = '';
+        console.log('✅ Emergency mode DEACTIVATED');
+    }
+
+    /**
+     * 🎯 Detect message intent
+     */
+    detectIntent(message) {
+        const lowerMessage = message.toLowerCase().trim();
+
+        for (const [intent, keywords] of Object.entries(this.keywords)) {
+            for (const keyword of keywords) {
+                if (lowerMessage.includes(keyword)) {
+                    return intent;
+                }
+            }
+        }
+
+        return 'default';
+    }
+
+    /**
+     * 🎲 Get random response from category
+     */
+    getRandomResponse(category) {
+        const responses = this.responses[category] || this.responses.default;
+        const randomIndex = Math.floor(Math.random() * responses.length);
+        return responses[randomIndex];
+    }
+
+    /**
+     * 📤 Generate emergency response
+     */
+    generateResponse(message) {
+        const intent = this.detectIntent(message);
+        const response = this.getRandomResponse(intent);
+
+        return {
+            response: response,
+            metadata: {
+                source: 'emergency_mode',
+                intent: intent,
+                isOffline: true,
+                reason: this.activationReason,
+                timestamp: Date.now(),
+            },
+            error: null,
+            isEmergency: true,
+        };
+    }
+
+    /**
+     * 🏥 Get initial offline mode message
+     */
+    getOfflineGreeting() {
+        return this.getRandomResponse('systemError');
+    }
 }
 
-// Exportar instancia única (singleton)
+// Export unique instance (singleton)
 const emergencyMode = new EmergencyMode();
 export default emergencyMode;

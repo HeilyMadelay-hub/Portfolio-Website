@@ -193,3 +193,26 @@ class ChatService {
 // 🏭 EXPORTAR INSTANCIA ÚNICA (Singleton)
 // Toda la app usa la misma instancia del servicio
 export default new ChatService();
+
+      /*
+      
+      Usuario escribe mensaje
+       ↓
+MessageInput.jsx llama a chatService.sendMessage()
+       ↓
+ChatServicio.js hace POST a http://localhost:5000/api/chat
+       ↓
+¿Backend responde?
+   ✅ SÍ → Devuelve respuesta del bot
+   ❌ NO → Activa modo emergencia → Devuelve respuesta predefinida
+       ↓
+Respuesta llega a MessageInput
+       ↓
+Se muestra en ChatArea
+
+Solo maneja lógica técnica: Hace peticiones HTTP, maneja errores, timeouts, etc.
+Los mensajes de consola (como console.log, console.error) son para debugging de desarrollador, no para el usuario final. Pueden estar en español sin problema.
+Los comentarios también son para ti como desarrollador, no afectan la interfaz del usuario.
+Las respuestas del bot vienen del backend, no de este archivo.
+      
+      */
