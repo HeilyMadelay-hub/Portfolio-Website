@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import './ChatArea.css';
 import MessageList from './MessageList/MessageList'; // Import del componente
 
 const ChatArea = ({ language, setLanguage, messages = [], onSendMessage, onSectionClick }) => {
+
+  const navigate = useNavigate(); // Hook de React Router que permite navegar entre páginas mediante en este caso el boton
   const [displayedText, setDisplayedText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
   
@@ -35,7 +38,7 @@ const ChatArea = ({ language, setLanguage, messages = [], onSendMessage, onSecti
   }, [currentTagline, language]);
 
   const handleViewProjects = () => {
-    window.location.href = '/portfolio';
+      navigate('/portfolio');
   };
 
   const handleContact = () => {

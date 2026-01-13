@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap');
-
+@import './styles/animations.css';
 :root {
   /* Tipografías */
   --font-heading: 'Space Grotesk', sans-serif;

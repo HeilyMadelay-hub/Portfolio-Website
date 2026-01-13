@@ -1,7 +1,7 @@
 /* ========================================
    APP.CSS - VERSIÓN LIMPIA FINAL
    ======================================== */
-
+@import './styles/animations.css';
 * {
   margin: 0;
   padding: 0;

@@ -1,88 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './App.css';
-import Sidebar from './components/chat/Sidebar/Sidebar.jsx';
-import ChatArea from './components/chat/ChatArea/ChatArea.jsx';
-import MessageInput from './components/chat/MessageInput/MessageInput.jsx';
-function App() {
-  const [messages, setMessages] = useState([]);
-  const [activeSection, setActiveSection] = useState('nueva');
-  const sidebarRef = useRef(null);
-  
-  const handleSendMessage = (message, response) => {
-    setMessages(prev => [...prev, 
-      { type: 'user', content: message },
-      { type: 'bot', content: response.response, metadata: response.metadata }
-    ]);
-  };
+import React from 'react'; // Importa React para poder usar JSX y componentes funcionales
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Importa componentes de React Router para manejar la navegación entre páginas
+import './App.css';// Importa los estilos globales de la aplicación
+import ChatPage from './pages/chat/ChatPage.jsx';// Importa la página principal del chat
+import ProfessionalPage from './pages/professionalpage/ProfessionalPage.jsx';// Importa el modo profesional 
+import './styles/animations.css';
 
-  const handleSectionClick = (sectionId) => {
-    setActiveSection(sectionId);
-    // Scroll suave al sidebar si está colapsado
-    const sidebarElement = document.querySelector('.sidebar');
-    if (sidebarElement?.classList.contains('collapsed')) {
-      // Abrir sidebar
-      sidebarElement.classList.remove('collapsed');
-    }
-    // Scroll suave a la sección en el sidebar
-    setTimeout(() => {
-      const sectionElement = document.querySelector(`[data-section-id="${sectionId}"]`);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        sectionElement.classList.add('highlight');
-        setTimeout(() => sectionElement.classList.remove('highlight'), 1500);
-      }
-    }, 100);
-  };
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [language, setLanguage] = useState('es'); // Estado global para el idioma
+function App() {// Componente principal de la aplicación que solo hace routing
+    return (
+        // BrowserRouter envuelve la app para habilitar rutas y navegación
+        <BrowserRouter>
+            {/* Routes define los caminos y qué componente renderizar en cada uno */}
+            <Routes>
+                {/* Ruta raíz "/" renderiza el componente de ChatPage */}
+                <Route path="/" element={<ChatPage />} />
 
-  // Escuchar cambios en el sidebar para browsers que no soportan :has
-  useEffect(() => {
-    const checkSidebarState = () => {
-      const sidebar = document.querySelector('.sidebar');
-      if (sidebar) {
-        setSidebarCollapsed(sidebar.classList.contains('collapsed'));
-      }
-    };
-
-    // Observar cambios en el DOM
-    const observer = new MutationObserver(checkSidebarState);
-    const sidebar = document.querySelector('.sidebar');
-    
-    if (sidebar) {
-      observer.observe(sidebar, { attributes: true, attributeFilter: ['class'] });
-    }
-
-    // Check inicial
-    checkSidebarState();
-
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div className={`app ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
-      <Sidebar 
-        language={language}
-        setLanguage={setLanguage}
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
-      <div className="main-container">
-        <div className="chat-wrapper">
-          <ChatArea 
-            language={language} 
-            setLanguage={setLanguage}
-            messages={messages}
-            onSectionClick={handleSectionClick}
-          />
-          <MessageInput 
-            language={language} 
-            onSendMessage={handleSendMessage}
-          />
-        </div>
-      </div>
-    </div>
-  );
+                {/* Ruta "/portfolio" renderiza el componente de ProfessionalPage */}
+                <Route path="/portfolio" element={<ProfessionalPage />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
-export default App;
+export default App;// Exporta el componente App para poder usarlo en index.js

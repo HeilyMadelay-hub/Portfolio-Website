@@ -188,6 +188,7 @@
     "react-dom": "^18.3.1",
     "react-is": "^16.13.1",
     "react-refresh": "^0.17.0",
+    "react-router-dom": "^7.12.0",
     "reflect.getprototypeof": "^1.0.10",
     "regexp.prototype.flags": "^1.5.4",
     "resolve": "^2.0.0-next.5",
