@@ -424,3 +424,14 @@ dump.rdb
 !.gitkeep
 !.keep
 !**/README.md
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# Node
+node_modules/
+
+# Build
+dist/
+build/
